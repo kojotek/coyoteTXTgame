@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>myPage</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+</head>
+
+<style>
+	.maintext{
+		position:absolute;
+		padding:20px;
+		top:20px;
+		left:20px;
+		width:660px;
+		height:300px;
+		border:1px solid gray;
+		z-index:3;
+	}
+	
+	.options{
+		position:absolute;
+		padding:20px;
+		top:340px;
+		left:20px;
+		width:660px;
+		height:300px;
+		border:1px solid gray;
+		z-index:3;
+	}
+	
+</style>
+
+<body>
+	
+	<div class="maintext" id="poleTekstowe">
+		cycki zopas
+	</div>
+	<div class="options">
+		cycki dupa dasflhasdhfkldhasfklj
+	</div>
+	
+	<script src="game.js" type="text/javascript"></script>
+
+	
+	
+	
+	
+	<script>
+		document.getElementById("poleTekstowe").innerHTML = "tu jest treść wczytana ze skryptu!"
+	
+		var peron = game.scenes.add("peron");
+		
+		peron.onEntry = function()
+		{
+			if (peron.flags.get("visited")){
+				console.log("Jestes na malym, fajnym dworcu.");
+			}
+			else{
+				console.log("Dluzszy opis tego, ze jestes na malym, fajnym dworcu. Jest dluzszy, bo jestes tu pierwszy raz");
+				peron.flags.set("visited",true);
+			}
+			
+		}
+	
+		game.options.add("roz", "Rozejrzyj sie.");
+		
+		game.options.get("roz").onUse = function()
+		{
+			peron.onEntry();
+		}
+	
+		peron.flags.add("visited");
+		peron.flags.set("visited", false);
+	</script>
+</body>
+
+</html>
