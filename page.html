@@ -8,48 +8,58 @@
 	<meta content="utf-8" http-equiv="encoding">
 </head>
 
+
 <style>
-	.maintext{
+
+	.mainTextTable{
 		position:absolute;
-		padding:20px;
-		top:20px;
-		left:20px;
-		width:660px;
-		height:300px;
+		top:2%;
+		height:60%;
+		left:1%;
+		width:60%;
 		border:1px solid gray;
 		z-index:3;
 	}
 	
-	.options{
+	.optionsTable{
 		position:absolute;
-		padding:20px;
-		top:340px;
-		left:20px;
-		width:660px;
-		height:300px;
+		top:65%;
+		height:30%;
+		left:1%;
+		width:60%;
 		border:1px solid gray;
 		z-index:3;
+	}
+	
+	.mainTextContent{
+		position: absolute;
+		left: 3%;
+		width:80%;
+		font-family: Arial;
+		text-align: justify;
+		text-justify: inter-word;
 	}
 	
 </style>
 
+
 <body>
 	
-	<div class="maintext" id="poleTekstowe">
-		cycki zopas
+	<div class="mainTextTable">
+		<p class="mainTextContent" id="mainTextField">
+			example text
+		</p>
 	</div>
-	<div class="options">
-		cycki dupa dasflhasdhfkldhasfklj
+	<div class="optionsTable">
+		<p class="mainTextContent">
+			example text
+		</p>
 	</div>
 	
 	<script src="game.js" type="text/javascript"></script>
-
-	
-	
-	
+	<script src="display.js" type="text/javascript"></script>
 	
 	<script>
-		document.getElementById("poleTekstowe").innerHTML = "tu jest treść wczytana ze skryptu!"
 	
 		var peron = game.scenes.add("peron");
 		
