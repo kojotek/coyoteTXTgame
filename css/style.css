@@ -1,0 +1,57 @@
+:root {
+	--backgroundColor: #292929;
+	--contentColor: #00BB00;
+}
+
+body{
+	font-family: Courier new;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: var(--backgroundColor);
+	color: var(--contentColor);
+}
+
+.mainTextBox{
+	position:absolute;
+	overflow: auto;
+	top:2%;
+	height:60%;
+	left:1%;
+	width:60%;
+	border:2px solid var(--contentColor);
+	z-index:3;
+}
+
+.mainTextContent{
+	position: absolute;
+	left: 2%;
+	width:96%;
+}
+
+.optionBox{
+	position:absolute;
+	overflow: hidden;
+	top:65%;
+	height:30%;
+	left:1%;
+	width:60%;
+	border:2px solid var(--contentColor);
+	z-index:3;
+}
+
+.optionBoxtContent{
+	position: absolute;
+	top: 4%;		
+	left: 1%;
+	width: 10000%;
+}
+
+.optionBoxContent .chosen{
+	background-color: var(--contentColor);
+	color: var(--backgroundColor);
+}
+
+.optionBoxContent .notChosen{
+	background-color: var(--backgroundtColor);
+	color: var(--contentColor);
+}
