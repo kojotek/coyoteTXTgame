@@ -82,6 +82,7 @@ game.options.add = function(tag, text)
 {
 	tag = tag.toLowerCase();
 	game.options._list[tag] = new Option(text);
+	display.optionList.add ( game.options._list[tag] );
 }
 
 game.options.get = function( tag )
@@ -99,6 +100,7 @@ game.options.use = function( tag )
 game.options.remove = function( tag )
 {
 	tag = tag.toLowerCase();
+	display.optionList.remove(game.options._list[tag]);
 	delete game.options._list[tag];
 }
 

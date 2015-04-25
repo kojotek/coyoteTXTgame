@@ -6,7 +6,6 @@ display.mainText._contentToDisplay = new String();
 display.mainText._intervalFuncHandler;
 display.mainText._interval = 10;
 
-
 display.mainText.write = function(str)
 {
 	display.mainText._counter = 0;
@@ -42,3 +41,28 @@ display.mainText.setInterval = function( i )
 	
 }
 
+display.optionList = new Object();
+display._currentOption = 0;
+
+display.optionList.add = function( option )
+{
+	var table = document.getElementById("optionList");
+    var row = table.insertRow(table.rows.length);
+    var cell = row.insertCell(0);
+    cell.innerHTML = option.text;
+	cell.className = "optionNotChosen";
+}
+
+display.optionList.remove = function( option )
+{
+	var table = document.getElementById("optionList");
+	var index;
+	for (var a=0; a<table.rows.length; a++)
+	{
+		if (table.rows[a].cells[0].innerHTML===option.text){
+			index = a;
+			break;
+		}
+	}
+	table.deleteRow(index);
+}

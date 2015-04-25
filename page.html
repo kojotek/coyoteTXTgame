@@ -17,8 +17,8 @@
 	}
 	
 	body{
-		font-family: consolas;
-		font-size: calc( 14px + 0.6vh);
+		font-family: Courier new;
+		font-size: calc( 12px + 0.6vh);
 		font-weight: bold;
 		background-color: var(--backgroundColor);
 		color: var(--contentColor);
@@ -41,7 +41,7 @@
 		width:96%;
 	}
 	
-	.optionsTable{
+	.optionTable{
 		position:absolute;
 		overflow: auto;
 		top:65%;
@@ -82,26 +82,8 @@
 		</p>
 	</div>
 	
-	<div class="optionsTable">
+	<div class="optionTable">
 		<table class="optionListContent" id="optionList">
-			<tr>
-				<td class="optionChosen">Zaproponuj samotnej wdowie dropsa</td>
-			</tr>
-			<tr>
-				<td class="optionNotChosen">sample2</td>
-			</tr>
-			<tr>
-				<td class="optionNotChosen">sample2</td>
-			</tr>
-			<tr>
-				<td class="optionNotChosen">sample2</td>
-			</tr>
-			<tr>
-				<td class="optionNotChosen">sample2</td>
-			</tr>
-			<tr>
-				<td id="lol" class="optionNotChosen">sample2</td>
-			</tr>
 		</table>
 	</div>
 	
@@ -122,10 +104,10 @@
 				console.log("Dluzszy opis tego, ze jestes na malym, fajnym dworcu. Jest dluzszy, bo jestes tu pierwszy raz");
 				peron.flags.set("visited",true);
 			}
-			
 		}
 	
-		game.options.add("roz", "Rozejrzyj sie.");
+		game.options.add("roz", "Rozejrzyj sie");
+		game.options.add("tancz", "Zatańcz dziką makarenę");
 		
 		game.options.get("roz").onUse = function()
 		{
