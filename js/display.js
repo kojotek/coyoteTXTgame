@@ -51,7 +51,7 @@ display.optionList.add = function( option )
 {
 	var table = document.getElementById("optionList");
     var row = table.insertRow(table.rows.length);
-	row.className = "optionBoxContent notChosen";
+	row.className = "notSelected";
     var cell = row.insertCell(0);
     cell.innerHTML = option.text;
 }

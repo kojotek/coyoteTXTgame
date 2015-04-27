@@ -1,14 +1,14 @@
-:root {
-	--backgroundColor: #292929;
-	--contentColor: #00BB00;
-}
+/*
+	background		#292929
+	content 		#00BB00
+*/
 
 body{
 	font-family: Courier new;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: var(--backgroundColor);
-	color: var(--contentColor);
+	background-color: #292929;
+	color: #00BB00;
 }
 
 .mainTextBox{
@@ -18,7 +18,7 @@ body{
 	height:60%;
 	left:1%;
 	width:60%;
-	border:2px solid var(--contentColor);
+	border:2px solid #00BB00;
 	z-index:3;
 }
 
@@ -26,32 +26,33 @@ body{
 	position: absolute;
 	left: 2%;
 	width:96%;
+	top: 2%;
 }
 
 .optionBox{
 	position:absolute;
 	overflow: hidden;
-	top:65%;
-	height:30%;
+	top:64%;
+	height:34%;
 	left:1%;
 	width:60%;
-	border:2px solid var(--contentColor);
+	border:2px solid #00BB00;
 	z-index:3;
 }
 
-.optionBoxtContent{
+.optionTable{
 	position: absolute;
-	top: 4%;		
-	left: 1%;
-	width: 10000%;
+	left: 2%;
+	width:96%;
+	top: 2%;
 }
 
-.optionBoxContent .chosen{
-	background-color: var(--contentColor);
-	color: var(--backgroundColor);
+.selected{
+	background-color: #00BB00;
+	color: #292929;
 }
 
-.optionBoxContent .notChosen{
-	background-color: var(--backgroundtColor);
-	color: var(--contentColor);
+.notSelected{
+	background-color: #292929;
+	color: #00BB00;
 }
