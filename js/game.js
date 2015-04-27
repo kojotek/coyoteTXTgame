@@ -101,11 +101,11 @@ game.options.use = function( tag )
 game.options.remove = function( tag )
 {
 	tag = tag.toLowerCase();
-	display.optionList.remove(game.options._list[tag]);
+	display.optionList.remove(tag);
 	delete game.options._list[tag];
 }
 
-game.options.list = function()
+game.options.count = function()
 {
-	for(var key in game.options._list) { console.log(game.options._list[key].text); }
+	return Object.keys(game.options._list).length;
 }
