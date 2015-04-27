@@ -49,25 +49,26 @@ display._currentOption = 0;
 
 display.optionList.add = function( option )
 {
-	var table = document.getElementById("optionList");
+	var table = document.getElementById("optionTable");
     var row = table.insertRow(table.rows.length);
-	row.className = "notSelected";
-    var cell = row.insertCell(0);
-    cell.innerHTML = option.text;
+	row.className = "option";
+	row.tag = option.tag;
+    row.innerHTML = option.text;
+	display.window.refresh();
 }
 
 display.optionList.remove = function( option )
 {
-	var table = document.getElementById("optionList");
-	var index;
+	var table = document.getElementById("optionTable");
 	for (var a=0; a<table.rows.length; a++)
 	{
-		if (table.rows[a].cells[0].innerHTML===option.text){
-			index = a;
+		if (table.rows[a].tag === option.tag){
+			table.deleteRow(a);
 			break;
 		}
 	}
-	table.deleteRow(index);
+	
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,10 +77,10 @@ display.optionList.remove = function( option )
 
 display.window = new Object();
 
-display.refresh = function()
+display.window.refresh = function()
 {
 	var optionTableHeight = document.getElementById("optionBox").offsetHeight;
-	var allOptions = document.getElementsByClassName("optionBoxContent");
+	var allOptions = document.getElementsByClassName("option");
 	var sum = 0;
 	
 	for( var i=0; i<allOptions.length; i++ ){

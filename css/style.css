@@ -7,7 +7,7 @@ body{
 	font-family: Courier new;
 	font-size: 16px;
 	font-weight: bold;
-	background-color: #292929;
+	background-color: #151515;
 	color: #00BB00;
 }
 
@@ -30,7 +30,7 @@ body{
 }
 
 .optionBox{
-	position:absolute;
+	position: absolute;
 	overflow: hidden;
 	top:64%;
 	height:34%;
@@ -47,12 +47,10 @@ body{
 	top: 2%;
 }
 
-.selected{
-	background-color: #00BB00;
-	color: #292929;
+.option{
 }
 
-.notSelected{
-	background-color: #292929;
-	color: #00BB00;
+#selectedOption{
+	background-color: #00BB00;
+	color: #151515;
 }

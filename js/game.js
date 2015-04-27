@@ -48,8 +48,9 @@ function Scene()
 
 
 /////////////////////////////////////////////////////////////////////////
-function Option(text)
+function Option(tag, text)
 {
+	this.tag = tag;
 	this.text = text;
 	this.onUse = function(){};
 }
@@ -81,7 +82,7 @@ game.options._list = new Object();
 game.options.add = function(tag, text)
 {
 	tag = tag.toLowerCase();
-	game.options._list[tag] = new Option(text);
+	game.options._list[tag] = new Option(tag, text);
 	display.optionList.add ( game.options._list[tag] );
 }
 
