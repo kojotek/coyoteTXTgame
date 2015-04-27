@@ -48,7 +48,7 @@ display.optionList.add = function( option )
     var row = table.insertRow(table.rows.length);
 	row.className = "option";
 	row.tag = option.tag;
-    row.innerHTML = option.text;
+	row.text = option.text;
 	display.window.refresh();
 }
 
@@ -88,14 +88,31 @@ display.window.refresh = function()
 	
 	/*resetowanie ustawien*/
 	for( var i=0; i<allOptions.length; i++ ){
-		allOptions[i].style.display = "table";
-		allOptions[i].id = undefined;
+		allOptions[i].style.display = "table-row";
+		allOptions[i].innerHTML = "";
 	}
 	
 	allOptions[display._currentOption].id = "selectedOption"
 	
+	
 	for( var i=0; i<allOptions.length; i++ )
-	{
+	{	
+/*Ucinanie za dlugich opcji*/
+		var lh = allOptions[i].offsetHeight;
+		var k = 0;
+		while ( allOptions[i].innerHTML !== allOptions[i].text ){
+			allOptions[i].innerHTML = allOptions[i].text.substr(0,k);
+			k++;
+			if ( lh === 0 ){
+				lh = allOptions[i].offsetHeight;
+			}
+			if( allOptions[i].offsetHeight !== lh ){
+				allOptions[i].innerHTML = allOptions[i].text.substr(0,k-6) + "...";
+				break;
+			}
+		}
+		
+/*Wyswietlanie tylko widocznych opcji*/
 		sum = sum + allOptions[i].offsetHeight;
 		
 		if ( sum < optionTableHeight ){
