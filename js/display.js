@@ -40,7 +40,8 @@ display.mainText.setInterval = function( i )
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 display.optionList = new Object();
-display._currentOption = 0;
+display.optionList._currentOption = 0;
+display.optionList._optionBoxExtended = false;
 
 display.optionList.add = function( option )
 {
@@ -64,13 +65,26 @@ display.optionList.remove = function( tag )
 
 display.optionList.next = function()
 {
-	display._currentOption = Math.max( Math.min( display._currentOption+ 1, game.options.count()-1  ), 0 );
+	display.optionList._currentOption = Math.max( Math.min( display.optionList._currentOption+ 1, game.options.count()-1  ), 0 );
 	display.window.refresh();
 }
 
 display.optionList.prev = function()
 {
-	display._currentOption = Math.min( Math.max( display._currentOption-1, 0 ), game.options.count() );
+	display.optionList._currentOption = Math.min( Math.max( display.optionList._currentOption-1, 0 ), game.options.count() );
+	display.window.refresh();
+}
+
+display.optionList.extend = function()
+{
+	display.optionList._optionBoxExtended = true;
+	display.window.refresh();
+	
+}
+
+display.optionList.shorten = function()
+{
+	display.optionList._optionBoxExtended = false;
 	display.window.refresh();
 }
 
@@ -86,28 +100,31 @@ display.window.refresh = function()
 	var allOptions = document.getElementsByClassName("option");
 	var sum = 0;
 	
-	/*resetowanie ustawien*/
+/*resetowanie ustawien*/
 	for( var i=0; i<allOptions.length; i++ ){
 		allOptions[i].style.display = "table-row";
-		allOptions[i].innerHTML = "";
+		allOptions[i].id = undefined;
+		allOptions[i].innerHTML = "&nbsp";
 	}
 	
-	allOptions[display._currentOption].id = "selectedOption"
+/*zaznaczanie wybranej opcji*/
+	allOptions[display.optionList._currentOption].id = "selectedOption"
 	
+/*Ramka opcji: wydluzona, czy zwykla*/
+	document.getElementById("optionBox").className = (display.optionList._optionBoxExtended ? "optionBox extended" : "optionBox");
+	document.getElementById("optionTable").className = (display.optionList._optionBoxExtended ? "optionTable extended" : "optionTable");
 	
 	for( var i=0; i<allOptions.length; i++ )
-	{	
+	{
+
 /*Ucinanie za dlugich opcji*/
 		var lh = allOptions[i].offsetHeight;
-		var k = 0;
-		while ( allOptions[i].innerHTML !== allOptions[i].text ){
+		var k = 1;
+		while ( k !== allOptions[i].text.length+1 ){
 			allOptions[i].innerHTML = allOptions[i].text.substr(0,k);
 			k++;
-			if ( lh === 0 ){
-				lh = allOptions[i].offsetHeight;
-			}
 			if( allOptions[i].offsetHeight !== lh ){
-				allOptions[i].innerHTML = allOptions[i].text.substr(0,k-6) + "...";
+				allOptions[i].innerHTML = allOptions[i].text.substr(0,k-7) + "...";
 				break;
 			}
 		}

@@ -3,6 +3,15 @@
 	content 		#00BB00
 */
 
+html{
+	cursor: default;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
 body{
 	font-family: Courier new;
 	font-size: 16px;
@@ -38,14 +47,23 @@ body{
 	border:2px solid #00BB00;
 }
 
-.optionTable{
+.optionBox.extended{
+	position: absolute;
+	width:98%;
 
+}
+
+.optionTable{
 	position: absolute;
 	left: 1%;
 	width:98%;
 	top: 2%;
 }
 
+.optionTable.extended{
+	position: absolute;
+	left: 0.6%;
+}
 
 .option{
 }
