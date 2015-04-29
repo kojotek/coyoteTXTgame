@@ -4,88 +4,33 @@ display.window = new Object();
 
 display.window.refresh = function()
 {
+	display.optionList._allOptions = document.getElementsByClassName("option");
 	
-	var allOptions = document.getElementsByClassName("option");
-
 	display.window.reset();
 	display.window.markSelectedOption();
 	display.window.setOptionBoxMode();
-
-	
-/*inicjalizacja zmiennych potrzebnych do obliczen*/
-	var optionTableHeight = 0.88 * document.getElementById("optionBox").offsetHeight;
-	var sum = 0;
-	var visibleOptions = 0;
-	
-	
-	for( var i=0; i<allOptions.length; i++ )
-	{	
-		
-	/*Ucinanie za dlugich opcji*/
-		var lh = allOptions[i].offsetHeight;
-		var k = 1;
-		while ( k !== allOptions[i].text.length+1 ){
-			allOptions[i].innerHTML = allOptions[i].text.substr(0,k);
-			k++;
-			if( allOptions[i].offsetHeight !== lh ){
-				allOptions[i].innerHTML = allOptions[i].text.substr(0,k-7) + "...";
-				break;
-			}
-		}
-		
-		
-	/*policz ile linii zmiesci sie w ramce*/
-		sum = sum + allOptions[i].offsetHeight;
-		if ( sum < optionTableHeight ){
-			visibleOptions = i;
-		}
-		
-		
-	}
-	
-	
-/*przesun zakres zaleznie od polozenia currentOption*/
-	while( (display.optionList._upperLimit - display.optionList._lowerLimit) < visibleOptions ){
-		display.optionList._upperLimit++;
-	}
-	while( (display.optionList._upperLimit - display.optionList._lowerLimit) > visibleOptions ){
-		display.optionList._upperLimit--;
-	}
-	while( display.optionList._currentOption > display.optionList._upperLimit ){
-		display.optionList._lowerLimit++; display.optionList._upperLimit++;
-	}
-	while( display.optionList._currentOption < display.optionList._lowerLimit ){
-		display.optionList._lowerLimit--; display.optionList._upperLimit--;
-	}
-	
-
-/*wyswietl tylko te opcje, ktore mieszcza sie w zakresie*/
-	for( var i=0; i<display.optionList._lowerLimit; i++ ){
-		allOptions[i].style.display = "none";
-	}
-	for( var i=display.optionList._upperLimit+1; i<allOptions.length; i++ ){
-		allOptions[i].style.display = "none";
-	}
+	display.window.drawOptions();
 
 }
 
 
 display.window.reset = function()
 {
-	var allOptions = document.getElementsByClassName("option");
 
-	for( var i=0; i<allOptions.length; i++ ){
-		allOptions[i].style.display = "table-row";
-		allOptions[i].id = undefined;
-		allOptions[i].innerHTML = "&nbsp";
+	for( var i=0; i<display.optionList._allOptions.length; i++ ){
+		display.optionList._allOptions[i].style.display = "table-row";
+		display.optionList._allOptions[i].id = undefined;
+		display.optionList._allOptions[i].innerHTML = "&nbsp";
 	}
 }
 
 
 display.window.markSelectedOption = function()
 {
-	var allOptions = document.getElementsByClassName("option");
-	allOptions[display.optionList._currentOption].id = "selectedOption";
+	var toSelect = display.optionList._allOptions[display.optionList._currentOption];
+	if ( toSelect !== undefined ){
+		toSelect.id = "selectedOption";
+	}
 }
 
 
@@ -99,33 +44,40 @@ display.window.setOptionBoxMode = function()
 display.window.drawOptions = function()
 {
 	/*inicjalizacja zmiennych potrzebnych do obliczen*/
-	var allOptions = document.getElementsByClassName("option");
 	var optionTableHeight = 0.88 * document.getElementById("optionBox").offsetHeight;
 	var sum = 0;
 	var visibleOptions = 0;
+	var lineHeight;
+	var charsInRow = 1;
+	
+	/*liczenie, ile znakow miesci sie w linii*/
+	if ( display.optionList._allOptions.length > 0 ){
+		lineHeight = display.optionList._allOptions[0].offsetHeight;
+		while ( display.optionList._allOptions[0].offsetHeight === lineHeight ){
+			display.optionList._allOptions[0].innerHTML += "c ";
+			charsInRow += 2;
+		}
+	}
 	
 	
-	for( var i=0; i<allOptions.length; i++ )
+	for( var i=0; i<display.optionList._allOptions.length; i++ )
 	{	
+
 	/*Ucinanie za dlugich opcji*/
-		var lh = allOptions[i].offsetHeight;
-		var k = 1;
-		while ( k !== allOptions[i].text.length+1 ){
-			allOptions[i].innerHTML = allOptions[i].text.substr(0,k);
-			k++;
-			if( allOptions[i].offsetHeight !== lh ){
-				allOptions[i].innerHTML = allOptions[i].text.substr(0,k-7) + "...";
-				break;
-			}
+		if( display.optionList._allOptions[i].text.length >= charsInRow ){
+			display.optionList._allOptions[i].innerHTML = display.optionList._allOptions[i].text.substr(0,charsInRow-7) + "...";
+		}
+		else{
+			display.optionList._allOptions[i].innerHTML = display.optionList._allOptions[i].text;
 		}
 		
 	/*policz ile linii zmiesci sie w ramce*/
-		sum = sum + allOptions[i].offsetHeight;
+		sum = sum + display.optionList._allOptions[i].offsetHeight;
 		if ( sum < optionTableHeight ){
 			visibleOptions = i;
 		}
 	}
-	
+	/* DOTAD JEST WZGLEDNIE ZOPTYMALIZOWANE */
 	
 /*przesun zakres zaleznie od polozenia currentOption*/
 	while( (display.optionList._upperLimit - display.optionList._lowerLimit) < visibleOptions ){
@@ -144,11 +96,10 @@ display.window.drawOptions = function()
 
 /*wyswietl tylko te opcje, ktore mieszcza sie w zakresie*/
 	for( var i=0; i<display.optionList._lowerLimit; i++ ){
-		allOptions[i].style.display = "none";
+		display.optionList._allOptions[i].style.display = "none";
 	}
-	for( var i=display.optionList._upperLimit+1; i<allOptions.length; i++ ){
-		allOptions[i].style.display = "none";
+	for( var i=display.optionList._upperLimit+1; i<display.optionList._allOptions.length; i++ ){
+		display.optionList._allOptions[i].style.display = "none";
 	}
-	
 	
 }

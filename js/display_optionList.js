@@ -1,4 +1,5 @@
 display.optionList = new Object();
+display.optionList._allOptions;
 display.optionList._currentOption = 0;
 display.optionList._optionBoxExtended = false;
 display.optionList._upperLimit = 0;
@@ -20,12 +21,15 @@ display.optionList.remove = function( tag )
 {
 	var table = document.getElementById("optionTable");
 	var indexToDelete = findWithAttr(table.rows, "tag", tag);
+	
 	if (indexToDelete !== undefined){
 		table.deleteRow(indexToDelete);
 	}
-	if ( indexToDelete === display.optionList._currentOption ){
-		display.optionList._currentOption--;
+	
+	if ( indexToDelete <= display.optionList._currentOption ){
+		display.optionList._currentOption = Math.max(0, display.optionList._currentOption-1);
 	}
+	
 	display.window.refresh();
 }
 
@@ -48,7 +52,6 @@ display.optionList.extend = function()
 {
 	display.optionList._optionBoxExtended = true;
 	display.window.refresh();
-	
 }
 
 
