@@ -5,6 +5,7 @@
 //right arrow	39
 //down arrow	40
 //shift			16
+//enter			13
 
 document.addEventListener('keydown', function(event) {
     switch(event.keyCode)
@@ -19,6 +20,10 @@ document.addEventListener('keydown', function(event) {
 			
 		case 16:
 			display.optionList.extend();
+			break;
+			
+		case 13:
+			display.optionList.choose();
 			break;
     }
 }, true);

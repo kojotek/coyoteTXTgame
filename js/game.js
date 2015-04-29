@@ -52,7 +52,9 @@ function Option(tag, text)
 {
 	this.tag = tag;
 	this.text = text;
-	this.onUse = function(){};
+	this.onUse = function(){
+		alert("Brak zdefiniowanej funkcji dla opcji " + "\"" + this.text + "\";" );
+	};
 }
 
 
@@ -63,6 +65,7 @@ var game = new Object()		//singleton
 game.scenes = new Object();
 game.scenes._list = new Object();
 
+
 game.scenes.add = function( name )
 {
 	name = name.toLowerCase();
@@ -70,11 +73,13 @@ game.scenes.add = function( name )
 	return game.scenes._list[name];
 }
 
+
 game.scenes.get = function( name )
 {
 	name = name.toLowerCase();
 	return game.scenes._list[name];
 }
+
 
 game.options = new Object();
 game.options._list = new Object();
@@ -86,11 +91,13 @@ game.options.add = function(tag, text)
 	display.optionList.add ( game.options._list[tag] );
 }
 
+
 game.options.get = function( tag )
 {
 	tag = tag.toLowerCase();
 	return game.options._list[tag];
 }
+
 
 game.options.use = function( tag )
 {
@@ -98,12 +105,14 @@ game.options.use = function( tag )
 	game.options._list[tag].onUse();
 }
 
+
 game.options.remove = function( tag )
 {
 	tag = tag.toLowerCase();
 	display.optionList.remove(tag);
 	delete game.options._list[tag];
 }
+
 
 game.options.count = function()
 {

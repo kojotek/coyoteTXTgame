@@ -23,6 +23,9 @@ display.optionList.remove = function( tag )
 	if (indexToDelete !== undefined){
 		table.deleteRow(indexToDelete);
 	}
+	if ( indexToDelete === display.optionList._currentOption ){
+		display.optionList._currentOption--;
+	}
 	display.window.refresh();
 }
 
@@ -53,4 +56,13 @@ display.optionList.shorten = function()
 {
 	display.optionList._optionBoxExtended = false;
 	display.window.refresh();
+}
+
+
+display.optionList.choose = function()
+{
+	var chosen = document.getElementById("selectedOption");
+	if (chosen !== undefined){
+		game.options.use( chosen.tag );
+	}
 }
