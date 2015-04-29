@@ -50,8 +50,11 @@ display.optionList.prev = function()
 
 display.optionList.extend = function()
 {
-	display.optionList._optionBoxExtended = true;
-	display.window.refresh();
+	if ( !display.optionList._optionBoxExtended )
+	{
+		display.optionList._optionBoxExtended = true;
+		display.window.refresh();
+	}
 }
 
 

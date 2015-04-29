@@ -5,7 +5,7 @@ display.window = new Object();
 display.window.refresh = function()
 {
 	display.optionList._allOptions = document.getElementsByClassName("option");
-	
+
 	display.window.reset();
 	display.window.markSelectedOption();
 	display.window.setOptionBoxMode();
