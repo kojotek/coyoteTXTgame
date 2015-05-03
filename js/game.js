@@ -53,7 +53,7 @@ function Option(tag, text)
 	this.tag = tag;
 	this.text = text;
 	this.onUse = function(){
-		alert("Brak zdefiniowanej funkcji dla opcji " + "\"" + this.text + "\";" );
+		display.mainText.write("Brak zdefiniowanej funkcji dla opcji " + "\"" + this.text + "\";" );
 	};
 }
 
