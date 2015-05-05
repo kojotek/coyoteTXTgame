@@ -1,13 +1,15 @@
-function FlagSet()
+function FlagSet(name)
 {
-	this._list = new Object();
+	this.sceneName = name;
+	gameState.scenes[name] = new Object();
+	gameState.scenes[name].flags = new Object();
 	
 	this.add = function(tag)
 	{
 		tag = tag.toLowerCase();
-		if (this._list[tag]===undefined)
+		if (gameState.scenes[this.sceneName].flags[tag]===undefined)
 		{
-			this._list[tag] = new Object;
+			gameState.scenes[this.sceneName].flags[tag] = new Object;
 		}
 		else
 		{
@@ -18,31 +20,31 @@ function FlagSet()
 	this.set = function(tag, value)
 	{
 		tag = tag.toLowerCase();
-		if (this._list[tag]===undefined)
+		if (gameState.scenes[this.sceneName].flags[tag]===undefined)
 		{
 			console.log("flaga " + tag + " nie zostala jeszcze zadeklarowana.");
 		}
 		else
 		{
-			this._list[tag] = value;
+			gameState.scenes[this.sceneName].flags[tag] = value;
 		}
 	}
 
 	this.get = function(tag)
 	{
 		tag = tag.toLowerCase();
-		return this._list[tag];
+		return gameState.scenes[this.sceneName].flags[tag];
 	}
 }
 
 
 
 /////////////////////////////////////////////////////////////////////////
-function Scene()
+function Scene(name)
 {
 	this.onEntry = function(){};
 	this.onLeave = function(){};
-	this.flags = new FlagSet();
+	this.flags = new FlagSet(name);
 }
 
 
