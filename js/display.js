@@ -77,23 +77,16 @@ display.window.drawOptions = function()
 			visibleOptions = i;
 		}
 	}
-	/* DOTAD JEST WZGLEDNIE ZOPTYMALIZOWANE */
 	
-/*przesun zakres zaleznie od polozenia currentOption*/
-	while( (display.optionList._upperLimit - display.optionList._lowerLimit) < visibleOptions ){
-		display.optionList._upperLimit++;
-	}
-	while( (display.optionList._upperLimit - display.optionList._lowerLimit) > visibleOptions ){
-		display.optionList._upperLimit--;
-	}
-	while( display.optionList._currentOption > display.optionList._upperLimit ){
-		display.optionList._lowerLimit++; display.optionList._upperLimit++;
-	}
-	while( display.optionList._currentOption < display.optionList._lowerLimit ){
-		display.optionList._lowerLimit--; display.optionList._upperLimit--;
-	}
 	
+/*ustal gorny limit*/
+	display.optionList._upperLimit = display.optionList._lowerLimit + visibleOptions;
 
+/*przesun limity tak, by currentOption zmiescilo sie w zakresie*/
+	var shift = Math.max(0, display.optionList._currentOption - display.optionList._upperLimit) + Math.min(0, display.optionList._currentOption - display.optionList._lowerLimit);
+	display.optionList._lowerLimit += shift;
+	display.optionList._upperLimit += shift;
+	
 /*wyswietl tylko te opcje, ktore mieszcza sie w zakresie*/
 	for( var i=0; i<display.optionList._lowerLimit; i++ ){
 		display.optionList._allOptions[i].style.display = "none";
