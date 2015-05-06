@@ -61,9 +61,31 @@ function Option(tag, text)
 
 
 
+/////////////////////////////////////////////////////////////////////////
+function Equip(tag, text)
+{
+	this.tag = tag;
+	this.text = text;
+	this.onUse = function(){
+		this.itemUse();
+		var funcName = "equipEvent_" + this.tag;
+		if ( gameState.currentScene[funcName] !== undefined ){
+			gameState.currentScene[funcName]();
+		}
+	};
+	
+	this.itemUse = function(){
+		display.mainText.write("Brak zdefiniowanej funkcji dla elementu ekwipunku: " + "\"" + this.text + "\";" );
+	};
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////	
 var game = new Object()		//singleton
 
+
+/////////////////////////////////////////////////////////////////////////
 game.scenes = new Object();
 game.scenes._list = new Object();
 
@@ -83,6 +105,7 @@ game.scenes.get = function( name )
 }
 
 
+/////////////////////////////////////////////////////////////////////////
 game.options = new Object();
 game.options._list = new Object();
 
@@ -119,4 +142,44 @@ game.options.remove = function( tag )
 game.options.count = function()
 {
 	return Object.keys(game.options._list).length;
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+game.equip = new Object();
+
+
+game.equip.add = function(tag, text)
+{
+	tag = tag.toLowerCase();
+	gameState.equip[tag] = new Equip(tag, text);
+	display.equipList.add ( gameState.equip[tag] );
+}
+
+
+game.equip.get = function( tag )
+{
+	tag = tag.toLowerCase();
+	return gameState.equip[tag];
+}
+
+
+game.equip.use = function( tag )
+{
+	tag = tag.toLowerCase();
+	gameState.equip[tag].onUse();
+}
+
+
+game.equip.remove = function( tag )
+{
+	tag = tag.toLowerCase();
+	display.equipList.remove(tag);
+	delete gameState.equip[tag];
+}
+
+
+game.equip.count = function()
+{
+	return Object.keys(gameState.equip).length;
 }

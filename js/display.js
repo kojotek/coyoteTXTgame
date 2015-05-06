@@ -4,17 +4,33 @@ display.window = new Object();
 
 display.window.refresh = function()
 {
-	display.optionList._allOptions = document.getElementsByClassName("option");
-
-	display.window.reset();
-	display.window.markSelectedOption();
-	display.window.setOptionBoxMode();
-	display.window.drawOptions();
-
+	display.window.refreshOptions();
+	display.window.refreshEquip();
 }
 
 
-display.window.reset = function()
+display.window.refreshOptions = function()
+{
+	display.optionList._allOptions = document.getElementsByClassName("option");
+
+	display.window.resetOptions();
+	display.window.markSelectedOption();
+	display.window.setOptionBoxMode();
+	display.window.drawOptions();
+}
+
+
+display.window.refreshEquip = function()
+{
+	display.equipList._allEquips = document.getElementsByClassName("equip");
+
+	display.window.resetEquip();
+	display.window.markSelectedEquip();
+	display.window.drawEquips();
+}
+
+
+display.window.resetOptions = function()
 {
 
 	for( var i=0; i<display.optionList._allOptions.length; i++ ){
@@ -22,6 +38,19 @@ display.window.reset = function()
 		display.optionList._allOptions[i].id = undefined;
 		display.optionList._allOptions[i].innerHTML = "&nbsp";
 	}
+
+}
+
+
+display.window.resetEquip = function()
+{
+
+	for( var i=0; i<display.equipList._allEquips.length; i++ ){
+		display.equipList._allEquips[i].style.display = "table-row";
+		display.equipList._allEquips[i].id = undefined;
+		display.equipList._allEquips[i].innerHTML = "&nbsp";
+	}
+
 }
 
 
@@ -30,6 +59,15 @@ display.window.markSelectedOption = function()
 	var toSelect = display.optionList._allOptions[display.optionList._currentOption];
 	if ( toSelect !== undefined ){
 		toSelect.id = "selectedOption";
+	}
+}
+
+
+display.window.markSelectedEquip = function()
+{
+	var toSelect = display.equipList._allEquips[display.equipList._currentEquip];
+	if ( toSelect !== undefined ){
+		toSelect.id = "selectedEquip";
 	}
 }
 
@@ -93,6 +131,64 @@ display.window.drawOptions = function()
 	}
 	for( var i=display.optionList._upperLimit+1; i<display.optionList._allOptions.length; i++ ){
 		display.optionList._allOptions[i].style.display = "none";
+	}
+	
+}
+
+
+
+display.window.drawEquips = function()
+{
+	/*inicjalizacja zmiennych potrzebnych do obliczen*/
+	var equipTableHeight = 0.88 * document.getElementById("equipBox").offsetHeight;
+	var sum = 0;
+	var visibleEquips = 0;
+	var lineHeight;
+	var charsInRow = 1;
+	
+	/*liczenie, ile znakow miesci sie w linii*/
+	if ( display.equipList._allEquips.length > 0 ){
+		lineHeight = display.equipList._allEquips[0].offsetHeight;
+		while ( display.equipList._allEquips[0].offsetHeight === lineHeight ){
+			display.equipList._allEquips[0].innerHTML += "c ";
+			charsInRow += 2;
+		}
+	}
+	
+	
+	for( var i=0; i<display.equipList._allEquips.length; i++ )
+	{	
+
+	/*Ucinanie za dlugich opcji*/
+		if( display.equipList._allEquips[i].text.length >= charsInRow ){
+			display.equipList._allEquips[i].innerHTML = display.equipList._allEquips[i].text.substr(0,charsInRow-7) + "...";
+		}
+		else{
+			display.equipList._allEquips[i].innerHTML = display.equipList._allEquips[i].text;
+		}
+		
+	/*policz ile linii zmiesci sie w ramce*/
+		sum = sum + display.equipList._allEquips[i].offsetHeight;
+		if ( sum < equipTableHeight ){
+			visibleEquips = i;
+		}
+	}
+	
+	
+/*ustal gorny limit*/
+	display.equipList._upperLimit = display.equipList._lowerLimit + visibleEquips;
+
+/*przesun limity tak, by currentEquip zmiescilo sie w zakresie*/
+	var shift = Math.max(0, display.equipList._currentEquip - display.equipList._upperLimit) + Math.min(0, display.equipList._currentEquip - display.equipList._lowerLimit);
+	display.equipList._lowerLimit += shift;
+	display.equipList._upperLimit += shift;
+	
+/*wyswietl tylko te opcje, ktore mieszcza sie w zakresie*/
+	for( var i=0; i<display.equipList._lowerLimit; i++ ){
+		display.equipList._allEquips[i].style.display = "none";
+	}
+	for( var i=display.equipList._upperLimit+1; i<display.equipList._allEquips.length; i++ ){
+		display.equipList._allEquips[i].style.display = "none";
 	}
 	
 }

@@ -13,7 +13,7 @@ display.optionList.add = function( option )
 	row.className = "option";
 	row.tag = option.tag;
 	row.text = option.text;
-	display.window.refresh();
+	display.window.refreshOptions();
 }
 
 
@@ -30,21 +30,21 @@ display.optionList.remove = function( tag )
 		display.optionList._currentOption = Math.max(0, display.optionList._currentOption-1);
 	}
 	
-	display.window.refresh();
+	display.window.refreshOptions();
 }
 
 
 display.optionList.next = function()
 {
 	display.optionList._currentOption = Math.max( Math.min( display.optionList._currentOption+ 1, game.options.count()-1  ), 0 );
-	display.window.refresh();
+	display.window.refreshOptions();
 }
 
 
 display.optionList.prev = function()
 {
 	display.optionList._currentOption = Math.min( Math.max( display.optionList._currentOption-1, 0 ), game.options.count() );
-	display.window.refresh();
+	display.window.refreshOptions();
 }
 
 
@@ -53,7 +53,7 @@ display.optionList.extend = function()
 	if ( !display.optionList._optionBoxExtended )
 	{
 		display.optionList._optionBoxExtended = true;
-		display.window.refresh();
+		display.window.refreshOptions();
 	}
 }
 
@@ -61,7 +61,7 @@ display.optionList.extend = function()
 display.optionList.shorten = function()
 {
 	display.optionList._optionBoxExtended = false;
-	display.window.refresh();
+	display.window.refreshOptions();
 }
 
 
