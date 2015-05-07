@@ -1,5 +1,78 @@
 var display = new Object();
 display.window = new Object();
+display.window.activeBox = "optionBox";
+
+
+display.window.prevItem = function()
+{
+	switch( display.window.activeBox )
+	{
+		case "optionBox":
+			display.optionList.prev();
+			break;
+			
+		case "equipBox":
+			display.equipList.prev();
+			break;
+	}
+}
+
+
+display.window.nextItem = function()
+{
+	switch( display.window.activeBox )
+	{
+		case "optionBox":
+			display.optionList.next();
+			break;
+			
+		case "equipBox":
+			display.equipList.next();
+			break;
+	}
+}
+
+
+display.window.prevBox = function()
+{
+	switch( display.window.activeBox )
+	{
+		case "equipBox":
+			display.window.activeBox = "optionBox";
+			display.window.unmarkSelectedEquip();
+			display.window.markSelectedOption();
+			break;
+	}
+}
+
+
+display.window.nextBox = function()
+{
+	switch( display.window.activeBox )
+	{
+		case "optionBox":
+			display.window.activeBox = "equipBox";
+			display.window.unmarkSelectedOption();
+			display.window.markSelectedEquip();
+			break;
+	}
+}
+
+
+display.window.chooseItem = function()
+{
+	switch( display.window.activeBox )
+	{
+		case "optionBox":
+			display.optionList.choose();
+			break;
+
+
+		case "equipBox":
+			display.equipList.choose();
+			break;
+	}
+}
 
 
 display.window.refresh = function()
@@ -14,7 +87,12 @@ display.window.refreshOptions = function()
 	display.optionList._allOptions = document.getElementsByClassName("option");
 
 	display.window.resetOptions();
-	display.window.markSelectedOption();
+	if ( display.window.activeBox === "optionBox" ){
+		display.window.markSelectedOption();
+	}
+	else{
+		display.window.unmarkSelectedOption();
+	}	
 	display.window.setOptionBoxMode();
 	display.window.drawOptions();
 }
@@ -25,7 +103,12 @@ display.window.refreshEquip = function()
 	display.equipList._allEquips = document.getElementsByClassName("equip");
 
 	display.window.resetEquip();
-	display.window.markSelectedEquip();
+	if ( display.window.activeBox === "equipBox" ){
+		display.window.markSelectedEquip();
+	}
+	else{
+		display.window.unmarkSelectedEquip();
+	}	
 	display.window.drawEquips();
 }
 
@@ -54,6 +137,7 @@ display.window.resetEquip = function()
 }
 
 
+
 display.window.markSelectedOption = function()
 {
 	var toSelect = display.optionList._allOptions[display.optionList._currentOption];
@@ -61,6 +145,17 @@ display.window.markSelectedOption = function()
 		toSelect.id = "selectedOption";
 	}
 }
+
+
+
+display.window.unmarkSelectedOption = function()
+{
+	var toUnselect = display.optionList._allOptions[display.optionList._currentOption];
+	if ( toUnselect !== undefined ){
+		toUnselect.id = undefined;
+	}
+}
+
 
 
 display.window.markSelectedEquip = function()
@@ -72,11 +167,23 @@ display.window.markSelectedEquip = function()
 }
 
 
+
+display.window.unmarkSelectedEquip = function()
+{
+	var toSelect = display.equipList._allEquips[display.equipList._currentEquip];
+	if ( toSelect !== undefined ){
+		toSelect.id = undefined;
+	}
+}
+
+
+
 display.window.setOptionBoxMode = function()
 {
 	document.getElementById("optionBox").className = (display.optionList._optionBoxExtended ? "optionBox extended" : "optionBox");
 	document.getElementById("optionTable").className = (display.optionList._optionBoxExtended ? "optionTable extended" : "optionTable");
 }
+
 
 
 display.window.drawOptions = function()
