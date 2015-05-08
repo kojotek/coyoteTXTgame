@@ -16,6 +16,7 @@ options.array = new Array();
 
 options.add = function( tag, text )
 {
+	tag = tag.toLowerCase();
 	var newOption = new Option( tag, text );
 	options.list[tag] = newOption;
 	options.array.push( newOption );
@@ -23,6 +24,7 @@ options.add = function( tag, text )
 
 options.remove = function( tag )
 {
+	tag = tag.toLowerCase();
 	var index = options.array.indexOf( options.list[tag] );
 	if (index > -1) {
 		options.array.splice(index, 1);

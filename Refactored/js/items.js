@@ -1,28 +1,36 @@
 function Item( tag, name )
 {
-	this.tag = tag;
+	this.tag = tag.toLowerCase();
 	this.name = name;
 	
-	this.onUse = function(){
-		//onGLobal + funkcja charakterystyczna dla miejsca
+	this.onUse = function()
+	{
+		this.onGlobalUse();
+		var funcName = "itemEvent_" + this.tag;
+		if ( scenes.list[gameState.currentScene][funcName] !== undefined )
+		{
+			scenes.list[gameState.currentScene][funcName]();
+		}
 	}
 	
-	this.onGlobalUse = function(){
+	this.onGlobalUse = function()
+	{
 		//cos, co mozna wywolac niezaleznie od stanu i lokacji
 	}
 	
 }
 
 
-scenes = new Object();
+items = new Object();
 
-scenes.list = new Object();
+items.list = new Object();
 
-scenes.array = new Array();
+items.array = new Array();
 
-scenes.add = function( name )
+items.add = function( tag, text )
 {
-	var newOption = new Option( name );
-	scenes.list[name] = newOption;
-	scenes.array.push( newOption );
+	tag = tag.toLowerCase();
+	var newItem = new Item( tag, text );
+	items.list[tag] = newItem;
+	items.array.push( newItem );
 }

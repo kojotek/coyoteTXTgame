@@ -1,6 +1,6 @@
 function Scene( name )
 {
-	this.name = name;
+	this.name = name.toLowerCase();
 	this.onLoad = function(){}
 	this.onLeave = function(){}
 }
@@ -14,7 +14,11 @@ scenes.array = new Array();
 
 scenes.add = function( name )
 {
-	var newOption = new Option( name );
-	scenes.list[name] = newOption;
-	scenes.array.push( newOption );
+	name = name.toLowerCase();
+	if ( scenes.list[name] !== undefined ){
+		console.log("Scene " + name + " already exists!")
+	}
+	var newScene = new Scene( name );
+	scenes.list[name] = newScene;
+	scenes.array.push( newScene );
 }
