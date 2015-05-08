@@ -147,39 +147,57 @@ game.options.count = function()
 
 /////////////////////////////////////////////////////////////////////////
 game.equip = new Object();
+game.equip._list = new Object();
 
 
 game.equip.add = function(tag, text)
 {
 	tag = tag.toLowerCase();
-	gameState.equip[tag] = new Equip(tag, text);
-	display.equipList.add ( gameState.equip[tag] );
+	game.equip._list[tag] = new Equip(tag, text);
+	//display.equipList.add ( game.equip._list[tag] );
 }
 
 
 game.equip.get = function( tag )
 {
 	tag = tag.toLowerCase();
-	return gameState.equip[tag];
+	return game.equip._list[tag];
 }
 
 
 game.equip.use = function( tag )
 {
 	tag = tag.toLowerCase();
-	gameState.equip[tag].onUse();
-}
-
-
-game.equip.remove = function( tag )
-{
-	tag = tag.toLowerCase();
-	display.equipList.remove(tag);
-	delete gameState.equip[tag];
+	game.equip._list[tag].onUse();
 }
 
 
 game.equip.count = function()
 {
-	return Object.keys(gameState.equip).length;
+	return Object.keys(game.equip._list).length;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////
+game.inventory = new Object();
+
+game.inventory.add = function( tag )
+{
+	tag = tag.toLowerCase();
+	gameState.inventory[tag] = game.equip._list[tag];
+	display.equipList.add( game.equip._list[tag] );
+}
+
+
+game.inventory.remove = function( tag )
+{
+	tag = tag.toLowerCase();
+	delete gameState.Inventory[tag];
+	display.equipList.remove( game.equip._list[tag] );
+}
+
+
+game.inventory.count = function()
+{
+	return Object.keys(gameState.inventory).length;
 }

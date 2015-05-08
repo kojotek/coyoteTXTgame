@@ -1,0 +1,103 @@
+html{
+	cursor: default;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+
+body{
+	font-family: Courier new;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: #191919;
+	color: #00BB00;
+}
+
+
+.mainTextBox{
+	position:absolute;
+	overflow: auto;
+	background-color: #191919;
+	top:2%;
+	height:60%;
+	left:1%;
+	width:60%;
+	border:2px solid #00BB00;
+	z-index: 1;
+}
+
+.mainTextContent{
+	position: absolute;
+	left: 1%;
+	width:91%;
+	top: 2%;
+}
+
+
+.optionBox{
+	position: absolute;
+	overflow: hidden;
+	background-color: #191919 ;
+	top:64%;
+	height:34%;
+	left:1%;
+	width:60%;
+	border:2px solid #00BB00;
+	z-index: 2;
+}
+
+.optionBox.extended{
+	position: absolute;
+	width:98%;
+}
+
+.optionTable{
+	position: absolute;
+	left: 1%;
+	width:98%;
+	top: 2%;
+}
+
+.optionTable.extended{
+	position: absolute;
+	left: 0.6%;
+	width: 98.8%;
+}
+
+.option{
+}
+
+#selectedOption{
+	background-color: #00BB00;
+	color: #191919;
+}
+
+
+.equipBox{
+	position: absolute;
+	overflow: hidden;
+	background-color: #191919 ;
+	top:2%;
+	height:60%;
+	left:62%;
+	width:37%;
+	border:2px solid #00BB00;
+	z-index: 1;
+}
+
+.equipTable{
+	position: absolute;
+	left: 1%;
+	width:98%;
+	top: 2%;
+}
+
+.equip{}
+
+#selectedEquip{
+	background-color: #00BB00;
+	color: #191919;
+}

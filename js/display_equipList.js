@@ -29,20 +29,20 @@ display.equipList.remove = function( tag )
 		display.equipList._currentEquip = Math.max(0, display.equipList._currentEquip-1);
 	}
 	
-	display.window.refreshEquip();
+	//display.window.refreshEquip();
 }
 
 
 display.equipList.next = function()
 {
-	display.equipList._currentEquip = Math.max( Math.min( display.equipList._currentEquip+ 1, game.equip.count()-1  ), 0 );
+	display.equipList._currentEquip = Math.max( Math.min( display.equipList._currentEquip+ 1, game.inventory.count()-1  ), 0 );
 	display.window.refreshEquip();
 }
 
 
 display.equipList.prev = function()
 {
-	display.equipList._currentEquip = Math.min( Math.max( display.equipList._currentEquip-1, 0 ), game.equip.count() );
+	display.equipList._currentEquip = Math.min( Math.max( display.equipList._currentEquip-1, 0 ), game.inventory.count() );
 	display.window.refreshEquip();
 }
 

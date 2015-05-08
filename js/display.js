@@ -128,7 +128,14 @@ display.window.resetOptions = function()
 display.window.resetEquip = function()
 {
 
-	for( var i=0; i<display.equipList._allEquips.length; i++ ){
+	for( var i=0; i<display.equipList._allEquips.length; i++ )
+	{
+		display.equipList.remove( display.equipList._allEquips[i].tag );
+	}
+
+	for( var i=0; i<game.inventory.count(); i++ )
+	{
+		display.equipList.add( Object.keys(gameState.inventory)[i].tag );
 		display.equipList._allEquips[i].style.display = "table-row";
 		display.equipList._allEquips[i].id = undefined;
 		display.equipList._allEquips[i].innerHTML = "&nbsp";
