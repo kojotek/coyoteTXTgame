@@ -15,7 +15,7 @@ function Item( tag, name )
 	
 	this.onGlobalUse = function()
 	{
-		//cos, co mozna wywolac niezaleznie od stanu i lokacji
+		//cos, co mozna wywolac niezaleznie od lokacji
 	}
 	
 }
