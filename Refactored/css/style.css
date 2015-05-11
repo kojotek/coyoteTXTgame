@@ -32,7 +32,7 @@ body{
 .mainTextContent{
 	position: absolute;
 	left: 1%;
-	width:91%;
+	width:98%;
 	top: 2%;
 }
 
@@ -56,6 +56,7 @@ body{
 
 .optionTable{
 	position: absolute;
+	table-layout: fixed;
 	left: 1%;
 	width:98%;
 	top: 2%;
@@ -67,7 +68,15 @@ body{
 	width: 98.8%;
 }
 
-.option{
+.optionTableRow{
+	position: relative;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+	display: block;
+	white-space: ellipsis;
+	width: 100%;
+	
 }
 
 #selectedOption{
@@ -76,7 +85,7 @@ body{
 }
 
 
-.equipBox{
+.inventoryBox{
 	position: absolute;
 	overflow: hidden;
 	background-color: #191919 ;
@@ -88,14 +97,22 @@ body{
 	z-index: 1;
 }
 
-.equipTable{
+.inventoryTable{
 	position: absolute;
 	left: 1%;
 	width:98%;
 	top: 2%;
 }
 
-.equip{}
+.inventoryTableRow{
+	position: relative;
+	overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+	display: block;
+	white-space: ellipsis;
+	width: 100%;
+}
 
 #selectedEquip{
 	background-color: #00BB00;
