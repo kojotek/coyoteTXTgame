@@ -14,6 +14,8 @@ options.list = new Object();
 
 options.array = new Array();
 
+options.current = -1;
+
 options.add = function( tag, text )
 {
 	tag = tag.toLowerCase();
@@ -24,6 +26,7 @@ options.add = function( tag, text )
 	var newOption = new Option( tag, text );
 	options.list[tag] = newOption;
 	options.array.push( newOption );
+	display.addOption(text);
 	return true;
 }
 
@@ -34,7 +37,9 @@ options.remove = function( tag )
 	if (index > -1) {
 		options.array.splice(index, 1);
 		delete options.list[tag];
+		display.removeOption(index);
 		return true;
 	}
+	console.log("tag " + tag + " not found");
 	return false;
 }

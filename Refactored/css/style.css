@@ -29,7 +29,7 @@ body{
 	z-index: 1;
 }
 
-.mainTextContent{
+.mainTextBox div{
 	position: absolute;
 	left: 1%;
 	width:98%;
@@ -68,15 +68,15 @@ body{
 	width: 98.8%;
 }
 
-.optionTableRow{
-	position: relative;
+.optionTable tr{
+	display: block;
+}
+
+.optionTable tr td{
 	overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 	display: block;
-	white-space: ellipsis;
-	width: 100%;
-	
 }
 
 #selectedOption{
@@ -99,19 +99,21 @@ body{
 
 .inventoryTable{
 	position: absolute;
+	table-layout: fixed;
 	left: 1%;
 	width:98%;
 	top: 2%;
 }
 
-.inventoryTableRow{
-	position: relative;
-	overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.inventoryTable tr{
 	display: block;
-	white-space: ellipsis;
-	width: 100%;
+}
+
+.inventoryTable tr td{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
 }
 
 #selectedEquip{
