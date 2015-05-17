@@ -16,6 +16,7 @@ options.array = new Array();
 
 options.current = -1;
 
+
 options.add = function( tag, text )
 {
 	tag = tag.toLowerCase();
@@ -26,9 +27,15 @@ options.add = function( tag, text )
 	var newOption = new Option( tag, text );
 	options.list[tag] = newOption;
 	options.array.push( newOption );
+	
+	if (options.array.length === 1){
+		options.setCurrent(0);
+	}
+	
 	display.addOption(text);
 	return true;
 }
+
 
 options.remove = function( tag )
 {
@@ -38,8 +45,19 @@ options.remove = function( tag )
 		options.array.splice(index, 1);
 		delete options.list[tag];
 		display.removeOption(index);
+		
+		if (options.array.length === 0){
+			options.setCurrent(-1);
+		}
 		return true;
 	}
 	console.log("tag " + tag + " not found");
 	return false;
+}
+
+
+options.setCurrent = function( index )
+{
+	options.current = index;
+	display.selectOption( options.current );
 }
