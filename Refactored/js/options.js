@@ -30,7 +30,7 @@ options.add = function( tag, text )
 	
 	display.addOption(text);
 	
-	if (options.array.length === 1){
+	if (options.current < 0 || options.array.length === 1){
 		options.setCurrent(0);
 	}
 	return true;
@@ -44,11 +44,20 @@ options.remove = function( tag )
 	if (index > -1) {
 		options.array.splice(index, 1);
 		delete options.list[tag];
-		display.removeOption(index);
 		
-		if (options.array.length === 0){
-			options.setCurrent(-1);
+		var newIndex = options.current;
+
+		if ( index <= options.current && options.current !== 0 ){
+			newIndex--;
 		}
+		
+		if ( options.array.length === 0 ){
+			newIndex = -1;
+		}
+		
+		display.removeOption(index);
+		options.setCurrent( newIndex );
+		
 		return true;
 	}
 	console.log("tag " + tag + " not found");
@@ -59,5 +68,21 @@ options.remove = function( tag )
 options.setCurrent = function( index )
 {
 	options.current = index;
-	display.selectOption( options.current );
+	if (input.activeWindow === "options"){
+		display.selectOption( options.current );
+	}
+}
+
+
+options.next = function()
+{
+	var newIndex = Math.max ( 0, Math.min( options.current+1, options.array.length-1 ) );
+	options.setCurrent(newIndex);
+}
+
+
+options.prev = function()
+{
+	var newIndex = Math.max ( 0, Math.min( options.current-1, options.array.length-1 ) );
+	options.setCurrent(newIndex);
 }
