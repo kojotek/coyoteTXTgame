@@ -39,7 +39,7 @@ body{
 
 .optionBox{
 	position: absolute;
-	overflow: hidden;
+	overflow: hidden;z
 	background-color: #191919 ;
 	top:64%;
 	height:34%;

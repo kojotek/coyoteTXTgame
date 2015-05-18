@@ -28,11 +28,11 @@ options.add = function( tag, text )
 	options.list[tag] = newOption;
 	options.array.push( newOption );
 	
+	display.addOption(text);
+	
 	if (options.array.length === 1){
 		options.setCurrent(0);
 	}
-	
-	display.addOption(text);
 	return true;
 }
 
