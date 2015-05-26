@@ -22,7 +22,6 @@ display.write = function(str)
 }
 
 
-
 display.writeln = function(str)
 {
 	display.mainText_contentToDisplay += ("</br>" + str);
@@ -35,24 +34,43 @@ display.writeln = function(str)
 
 display._writeByChar = function()
 {
-	if (display.mainText_counter < display.mainText_contentToDisplay.length){
-		if ( display.mainText_contentToDisplay.substr(display.mainText_counter,display.mainText_contentToDisplay.length).indexOf("</br>") === 0 ){
-			display.mainText_counter += 4;
-		}
-		display.mainText_counter++;
+	if (display.mainText_contentToDisplay.length > 0)
+	{
+		if ( display.mainText_contentToDisplay.substr(0,5) === "</br>" ){
+			document.getElementById("mainTextField").innerHTML += "</br>";
+			display.mainText_contentToDisplay = display.mainText_contentToDisplay.replace("</br>","");
+		} 
+		else 	
+		{
+			if( display.mainText_contentToDisplay.substr(0,2) === "[#" )
+			{
+				var command = display.mainText_contentToDisplay.substring( 2, leftToWrite.indexOf("#]") );
+				console.log(command);
+				eval(command);
+				display.mainText_contentToDisplay = display.mainText_contentToDisplay.replace("[#"+command+"#]","");
+			}
+			document.getElementById("mainTextField").innerHTML += display.mainText_contentToDisplay.charAt(0);
+			display.mainText_contentToDisplay = display.mainText_contentToDisplay.substr(1);
+				
+		}if 
 		setTimeout( display._writeByChar, display.mainText_interval );
 	}
 	else{
 		display.mainText_writingFinished = true;
 	}
-	document.getElementById("mainTextField").innerHTML = display.mainText_contentToDisplay.substring(0, display.mainText_counter);
 }
 
 
 display.setWritingInterval = function( i )
 {
 	if (i >= 0){
-		display.mainText_interval = i;
+		if( display.mainText_writingFinished ) {
+			display.mainText_interval = i;
+		}
+		else{
+			display.mainText_contentToDisplay += "[#display.mainText_interval="+i+";#]"
+			display._writeByChar();
+		}
 	}
 	else{
 		console.log("Nieprawidlowa wartosc!");
