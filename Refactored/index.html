@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
+<script src="js/utils.js" type="text/javascript"></script>
 <script src="js/gameState.js" type="text/javascript"></script>
 <script src="js/scenes.js" type="text/javascript"></script>
 <script src="js/flags.js" type="text/javascript"></script>
@@ -25,9 +26,7 @@
  <body onresize="display.resize()"> 
 	
 	<div class="mainTextBox" id="mainTextBox">
-		<div id="mainTextField">
-			xsample text sample text sample text sample text sample text sample text sample text sample text sample text sample text
-		</div>
+		<div id="mainTextField"></div>
 	</div>
 	
 	<div class="optionBox" id="optionBox">
@@ -55,13 +54,23 @@
 		inventory.add("2");
 		inventory.add("3");
 		
+		display.setWritingInterval(30);
+		display.write("Delikatnie uchyliłem drzwi. Poczułem na policzku zimny powiew.");
+		display.wait(25);
+		display.writeln("Siedziała tam. ");
+		display.wait(25);
+		display.write("Na krześle.");
+		display.wait(15);
+		display.writeln("Serce zaczęło mi walić jak szalone a czoło pokryło się potem. ");
+		display.wait(15);
 		display.setWritingInterval(100);
-		display.writeln("Nie ma pan kutasa, nie ma pan grzyba.");
-		display.setWritingInterval(10);
-		display.writeln("Nie ma pan kutasa, nie ma pan grzyba.");
+		display.writeln( "- Tak bardzo... " );
+		display.wait(5);
+		display.setWritingInterval(40);
+		display.write( "- wyszeptała - " );
 		display.setWritingInterval(100);
-		display.writeln("Nie ma pan kutasa, nie ma pan grzyba.");
-		
+		display.wait(10);
+		display.write( "Tak bardzo chciałabym kojotka..." );
 	
 	</script>
 	

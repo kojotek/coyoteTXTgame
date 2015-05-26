@@ -1,62 +1,77 @@
-display.mainText_counter = 0;
-display.mainText_contentToDisplay = new String();
-display.mainText_interval = 10;
-display.mainText_writingFinished = true;
+display._contentToDisplay = new String();
+display._interval = 10;
+display._writingFinished = true;
+display._intervalFuncHandler;
 
 
 display.clear = function()
 {
-	display.mainText_counter = 0;
-	display.mainText_contentToDisplay = "";
+	display._contentToDisplay = "";
 	document.getElementById("mainTextField").innerHTML = "";
+}
+
+
+display.wait = function( delay )
+{
+	display._contentToDisplay += "[#pause#]".repeat(delay);
 }
 
 
 display.write = function(str)
 {
-	display.mainText_contentToDisplay += str;
-	if( display.mainText_writingFinished ) {
-		display._writeByChar();
-		display.mainText_writingFinished = false;
+	display._contentToDisplay += str;
+	if( display._writingFinished ) {
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._writingFinished = false;
 	}
 }
 
 
 display.writeln = function(str)
 {
-	display.mainText_contentToDisplay += ("</br>" + str);
-	if( display.mainText_writingFinished ) {
-		display._writeByChar();
-		display.mainText_writingFinished = false;
+	display._contentToDisplay += ("<br/>" + str);
+	if( display._writingFinished ) {
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._writingFinished = false;
 	}
 }
 
 
 display._writeByChar = function()
 {
-	if (display.mainText_contentToDisplay.length > 0)
+	if (display._contentToDisplay.length > 0)
 	{
-		if ( display.mainText_contentToDisplay.substr(0,5) === "</br>" ){
-			document.getElementById("mainTextField").innerHTML += "</br>";
-			display.mainText_contentToDisplay = display.mainText_contentToDisplay.replace("</br>","");
+		if ( display._contentToDisplay.substr(0,5) === '<br/>' ){
+			document.getElementById("mainTextField").innerHTML += "<br/>";
+			display._contentToDisplay = display._contentToDisplay.substr(5);
 		} 
-		else 	
-		{
-			if( display.mainText_contentToDisplay.substr(0,2) === "[#" )
-			{
-				var command = display.mainText_contentToDisplay.substring( 2, leftToWrite.indexOf("#]") );
-				console.log(command);
-				eval(command);
-				display.mainText_contentToDisplay = display.mainText_contentToDisplay.replace("[#"+command+"#]","");
-			}
-			document.getElementById("mainTextField").innerHTML += display.mainText_contentToDisplay.charAt(0);
-			display.mainText_contentToDisplay = display.mainText_contentToDisplay.substr(1);
+		else{
+			if( display._contentToDisplay.substr(0,2) === "[#" ){
+				var command = display._contentToDisplay.substring( 2, display._contentToDisplay.indexOf("#]") );
+				if ( command === "pause" ){
+					display._contentToDisplay = display._contentToDisplay.substr(9);
+					return;
+				}
+				else
+				{
+					eval(command);
+					display._contentToDisplay = display._contentToDisplay.substr(command.length+4);
+					clearInterval( display._intervalFuncHandler );
+					display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+				}
 				
-		}if 
-		setTimeout( display._writeByChar, display.mainText_interval );
+			}
+			else{
+				document.getElementById("mainTextField").innerHTML += display._contentToDisplay.charAt(0);
+				display._contentToDisplay = display._contentToDisplay.substr(1);
+			}
+		}
+
 	}
-	else{
-		display.mainText_writingFinished = true;
+	else
+	{
+		display._writingFinished = true;
+		clearInterval( display._intervalFuncHandler );
 	}
 }
 
@@ -64,11 +79,11 @@ display._writeByChar = function()
 display.setWritingInterval = function( i )
 {
 	if (i >= 0){
-		if( display.mainText_writingFinished ) {
-			display.mainText_interval = i;
+		if( display._writingFinished ) {
+			display._interval = i;
 		}
 		else{
-			display.mainText_contentToDisplay += "[#display.mainText_interval="+i+";#]"
+			display._contentToDisplay += "[#display._interval="+i+";#]"
 			display._writeByChar();
 		}
 	}
