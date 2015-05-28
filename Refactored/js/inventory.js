@@ -65,7 +65,6 @@ inventory.setCurrent = function( index )
 }
 
 
-
 inventory.next = function()
 {
 	var newIndex = Math.max ( 0, Math.min( inventory.current+1, gameState.inventoryArray.length-1 ) );

@@ -13,7 +13,10 @@ display.clear = function()
 
 display.wait = function( delay )
 {
-	display._contentToDisplay += "[#pause#]".repeat(delay);
+	var temporaryInterval = display._interval;
+	display.setWritingInterval(0);
+	display._contentToDisplay += "[#p#]".repeat(delay);
+	display.setWritingInterval(temporaryInterval);
 }
 
 
@@ -48,8 +51,8 @@ display._writeByChar = function()
 		else{
 			if( display._contentToDisplay.substr(0,2) === "[#" ){
 				var command = display._contentToDisplay.substring( 2, display._contentToDisplay.indexOf("#]") );
-				if ( command === "pause" ){
-					display._contentToDisplay = display._contentToDisplay.substr(9);
+				if ( command === "p" ){
+					display._contentToDisplay = display._contentToDisplay.substr(5);
 					return;
 				}
 				else

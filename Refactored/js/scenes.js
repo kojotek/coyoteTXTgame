@@ -17,10 +17,10 @@ scenes.add = function( name )
 	name = name.toLowerCase();
 	if ( scenes.list[name] !== undefined ){
 		console.log("Scene " + name + " already exists!");
-		return false;
+		return undefined;
 	}
 	var newScene = new Scene( name );
 	scenes.list[name] = newScene;
 	scenes.array.push( newScene );
-	return true;
+	return scenes.list[name];
 }
