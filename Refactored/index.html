@@ -55,13 +55,39 @@
 		inventory.add("3");
 		
 		
-		display.write("a");
+		display.setWritingInterval(80);
+		display.write("Ten tekst wyświetli się dosyć wolno.");
 		display.wait(1000);
-		display.write("a");
+		display.setWritingInterval(10);
+		display.writeln("A ten całkiem szybko.");
 		display.wait(1000);
-		display.write("a");
+		display.setWritingInterval(40);
+		display.writeln("Teraz będę odliczał od dziesięciu do zera z sekundowymi przerwami...");
+		display.setWritingInterval(10);
 		display.wait(1000);
-		display.write("a");
+		display.writeln("10... ");
+		display.wait(1000);
+		display.write("9... ");
+		display.wait(1000);
+		display.write("8... ");
+		display.wait(1000);
+		display.write("7... ");
+		display.wait(1000);
+		display.write("6... ");
+		display.wait(1000);
+		display.write("5... ");
+		display.wait(1000);
+		display.write("4... ");
+		display.wait(1000);
+		display.write("3... ");
+		display.wait(1000);
+		display.write("2... ");
+		display.wait(1000);
+		display.write("1... ");
+		display.wait(1000);
+		display.write("0!");
+		display.wait(1000);
+		display.writeln("DZIAŁA!!!");
 	
 	</script>
 	
