@@ -29,17 +29,17 @@ body{
 	z-index: 1;
 }
 
-.mainTextContent{
+.mainTextBox div{
 	position: absolute;
 	left: 1%;
-	width:91%;
+	width:98%;
 	top: 2%;
 }
 
 
 .optionBox{
 	position: absolute;
-	overflow: hidden;
+	overflow: hidden;z
 	background-color: #191919 ;
 	top:64%;
 	height:34%;
@@ -56,6 +56,7 @@ body{
 
 .optionTable{
 	position: absolute;
+	table-layout: fixed;
 	left: 1%;
 	width:98%;
 	top: 2%;
@@ -67,7 +68,15 @@ body{
 	width: 98.8%;
 }
 
-.option{
+.optionTable tr{
+	display: block;
+}
+
+.optionTable tr td{
+	overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+	display: block;
 }
 
 #selectedOption{
@@ -75,8 +84,12 @@ body{
 	color: #191919;
 }
 
+#selectedInventory{
+	background-color: #00BB00;
+	color: #191919;
+}
 
-.equipBox{
+.inventoryBox{
 	position: absolute;
 	overflow: hidden;
 	background-color: #191919 ;
@@ -88,14 +101,24 @@ body{
 	z-index: 1;
 }
 
-.equipTable{
+.inventoryTable{
 	position: absolute;
+	table-layout: fixed;
 	left: 1%;
 	width:98%;
 	top: 2%;
 }
 
-.equip{}
+.inventoryTable tr{
+	display: block;
+}
+
+.inventoryTable tr td{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
 
 #selectedEquip{
 	background-color: #00BB00;

@@ -56,6 +56,17 @@ inventory.remove = function( tag )
 }
 
 
+inventory.useCurrent = function()
+{
+	if (inventory.current === -1)
+	{
+		return false;
+	}
+	items.list[ gameState.inventoryArray[inventory.current] ].onUse();
+	return true;
+}
+
+
 inventory.setCurrent = function( index )
 {
 	inventory.current = index;

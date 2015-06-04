@@ -14,28 +14,28 @@
 document.addEventListener('keydown', function(event) {
     switch(event.keyCode)
 	{
+		case 13:
+			input.chooseItem();
+			break;
+		
 		case 38:
-			display.window.prevItem();
+			input.prevItem();
 			break;
 
 		case 40:
-			display.window.nextItem();
+			input.nextItem();
 			break;
-
+			
 		case 37:
-			display.window.prevBox();
+			input.prevWindow();
 			break;
 
 		case 39:
-			display.window.nextBox();
-			break;
-			
-		case 13:
-			display.window.chooseItem();
+			input.nextWindow();
 			break;
 			
 		case 16:
-			display.optionList.extend();
+			display.setExtendedOptionBox(true);
 			break;
 
     }
@@ -46,7 +46,82 @@ document.addEventListener('keyup', function(event) {
     switch(event.keyCode)
 	{
 		case 16:
-			display.optionList.shorten();
+			display.setExtendedOptionBox(false);
 			break;
     }
 }, true);
+
+
+input = new Object();
+
+input.activeWindow = "options";
+
+input.nextWindow = function()
+{
+	switch (input.activeWindow)
+	{
+		case "options":
+			input.activeWindow = "inventory";
+			display.selectOption(-1);
+			display.selectInventory(inventory.current);
+			return;
+	}
+}
+
+
+input.prevWindow = function()
+{
+	switch (input.activeWindow)
+	{
+		case "inventory":
+			input.activeWindow = "options";
+			display.selectInventory(-1);
+			display.selectOption(options.current);
+			return;
+	}
+}
+
+
+input.nextItem = function()
+{
+	switch (input.activeWindow)
+	{
+		case "options":
+			options.next();
+			return;
+			
+		case "inventory":
+			inventory.next();
+			return;
+	}
+}
+
+
+input.prevItem = function()
+{
+	switch (input.activeWindow)
+	{
+		case "options":
+			options.prev();
+			return;
+			
+		case "inventory":
+			inventory.prev();
+			return;
+	}
+}
+
+
+input.chooseItem = function()
+{
+	switch (input.activeWindow)
+	{
+		case "options":
+			options.useCurrent();
+			return;
+			
+		case "inventory":
+			inventory.useCurrent();
+			return;
+	}
+}

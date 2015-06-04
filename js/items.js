@@ -15,7 +15,8 @@ function Item( tag, name )
 	
 	this.onGlobalUse = function()
 	{
-		//cos, co mozna wywolac niezaleznie od lokacji
+		display.clear();
+		display.write("Brak zdefiniowanej funkcji.")
 	}
 	
 }

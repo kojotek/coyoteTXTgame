@@ -1,4 +1,6 @@
 var gameState = new Object();
+
 gameState.scenes = new Object();
-gameState.currentScene = new Object();
-gameState.inventory = new Object();
+gameState.currentScene = "peron";
+
+gameState.inventoryArray = new Array();

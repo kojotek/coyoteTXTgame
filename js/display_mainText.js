@@ -1,36 +1,98 @@
-display.mainText = new Object();
-display.mainText._counter = 0;
-display.mainText._contentToDisplay = new String();
-display.mainText._intervalFuncHandler;
-display.mainText._interval = 10;
+display._contentToDisplay = new String();
+display._interval = 10;
+display._writingFinished = true;
+display._intervalFuncHandler;
 
 
-display.mainText.write = function(str)
+display.clear = function()
 {
-	display.mainText._counter = 0;
-	display.mainText._contentToDisplay = str;
-	display.mainText._intervalFuncHandler = setInterval(display.mainText._writeByChar, display.mainText._interval);
+	display._contentToDisplay = "";
+	document.getElementById("mainTextField").innerHTML = "";
 }
 
 
-display.mainText._writeByChar = function()
+display.wait = function( delay )
 {
-	if (display.mainText._counter < display.mainText._contentToDisplay.length){
-		display.mainText._counter++;
-	}
-	else{
-		clearInterval(display.mainText._intervalFuncHandler);
-	}
-	document.getElementById("mainTextField").innerHTML = display.mainText._contentToDisplay.substring(0, display.mainText._counter);
+	display._contentToDisplay += "[#display._hold("+delay+")#]";
 }
 
 
-display.mainText.setInterval = function( i )
+display.setWritingInterval = function( i )
 {
 	if (i >= 0){
-		display.mainText._interval = i;
+		if( display._writingFinished ) {
+			display._interval = i;
+		}
+		else{
+			display._contentToDisplay += "[#display._resetInterval(" + i + ");#]"
+			display._writeByChar();
+		}
 	}
 	else{
 		console.log("Nieprawidlowa wartosc!");
 	}
+}
+
+
+display.write = function(str)
+{
+	display._contentToDisplay += str;
+	if( display._writingFinished ) {
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._writingFinished = false;
+	}
+}
+
+
+display.writeln = function(str)
+{
+	display._contentToDisplay += ("<br/>" + str);
+	if( display._writingFinished ) {
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._writingFinished = false;
+	}
+}
+
+
+display._writeByChar = function()
+{
+	if (display._contentToDisplay.length > 0)
+	{
+		if ( display._contentToDisplay.substr(0,5) === '<br/>' ){
+			document.getElementById("mainTextField").innerHTML += "<br/>";
+			display._contentToDisplay = display._contentToDisplay.substr(5);
+		} 
+		else{
+			if( display._contentToDisplay.substr(0,2) === "[#" ){
+				var command = display._contentToDisplay.substring( 2, display._contentToDisplay.indexOf("#]") );
+				eval(command);
+				display._contentToDisplay = display._contentToDisplay.substr(command.length+4);
+			}
+			else{
+				document.getElementById("mainTextField").innerHTML += display._contentToDisplay.charAt(0);
+				display._contentToDisplay = display._contentToDisplay.substr(1);
+			}
+		}
+
+	}
+	else
+	{
+		display._writingFinished = true;
+		clearInterval( display._intervalFuncHandler );
+	}
+}
+
+
+display._hold = function( delay )
+{
+	clearInterval(display._intervalFuncHandler);
+	setTimeout( function() { display._intervalFuncHandler = setInterval (display._writeByChar, display._interval); }, delay );
+}
+
+
+display._resetInterval = function( newInterval )
+{
+	display._interval = newInterval;
+	clearInterval(display._intervalFuncHandler);
+	display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
 }

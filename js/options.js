@@ -3,7 +3,8 @@ function Option( tag, text )
 	this.tag = tag;
 	this.text = text;
 	this.onUse = function(){
-		//wypisz komunikat o niezdefiniowanej funkcji
+		display.clear();
+		display.write("Brak zdefiniowanej funkcji");
 	}
 }
 
@@ -62,6 +63,17 @@ options.remove = function( tag )
 	}
 	console.log("tag " + tag + " not found");
 	return false;
+}
+
+
+options.useCurrent = function()
+{
+	if (options.current === -1)
+	{
+		return false;
+	}
+	options.array[options.current].onUse();
+	return true;
 }
 
 
