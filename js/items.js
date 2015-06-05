@@ -7,8 +7,12 @@ function Item( tag, name )
 	{
 		this.onGlobalUse();
 		var funcName = "itemEvent_" + this.tag;
-		if ( scenes.list[gameState.currentScene][funcName] !== undefined )
-		{
+		
+		if (gameState.currentScene === undefined || gameState.currentScene === ""){
+			return;
+		}
+		
+		if ( scenes.list[gameState.currentScene][funcName] !== undefined ){
 			scenes.list[gameState.currentScene][funcName]();
 		}
 	}

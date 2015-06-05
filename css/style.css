@@ -16,8 +16,11 @@ body{
 	color: #00BB00;
 }
 
+/*###################################################################################################################################*/
+/*###########################################################  MAIN_TEXT  ###########################################################*/
+/*###################################################################################################################################*/
 
-.mainTextBox{
+#mainTextBox{
 	position:absolute;
 	overflow: auto;
 	background-color: #191919;
@@ -29,15 +32,18 @@ body{
 	z-index: 1;
 }
 
-.mainTextBox div{
+#mainTextBox div{
 	position: absolute;
 	left: 1%;
 	width:98%;
 	top: 2%;
 }
 
+/*###################################################################################################################################*/
+/*###########################################################  OPTIONS  #############################################################*/
+/*###################################################################################################################################*/
 
-.optionBox{
+#optionBox{
 	position: absolute;
 	overflow: hidden;z
 	background-color: #191919 ;
@@ -49,12 +55,12 @@ body{
 	z-index: 2;
 }
 
-.optionBox.extended{
+#optionBox.extended{
 	position: absolute;
 	width:98%;
 }
 
-.optionTable{
+#optionTable{
 	position: absolute;
 	table-layout: fixed;
 	left: 1%;
@@ -62,17 +68,17 @@ body{
 	top: 2%;
 }
 
-.optionTable.extended{
+#optionTable.extended{
 	position: absolute;
 	left: 0.6%;
 	width: 98.8%;
 }
 
-.optionTable tr{
+#optionTable tr{
 	display: block;
 }
 
-.optionTable tr td{
+#optionTable tr td{
 	overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -84,12 +90,11 @@ body{
 	color: #191919;
 }
 
-#selectedInventory{
-	background-color: #00BB00;
-	color: #191919;
-}
+/*###################################################################################################################################*/
+/*###########################################################  INVENTORY  ###########################################################*/
+/*###################################################################################################################################*/
 
-.inventoryBox{
+#inventoryBox{
 	position: absolute;
 	overflow: hidden;
 	background-color: #191919 ;
@@ -101,7 +106,7 @@ body{
 	z-index: 1;
 }
 
-.inventoryTable{
+#inventoryTable{
 	position: absolute;
 	table-layout: fixed;
 	left: 1%;
@@ -109,18 +114,34 @@ body{
 	top: 2%;
 }
 
-.inventoryTable tr{
+#inventoryTable tr{
 	display: block;
 }
 
-.inventoryTable tr td{
+#inventoryTable tr td{
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	display: block;
 }
 
-#selectedEquip{
+#selectedInventory{
 	background-color: #00BB00;
 	color: #191919;
+}
+
+/*###################################################################################################################################*/
+/*###########################################################  CHARACTER  ###########################################################*/
+/*###################################################################################################################################*/
+
+#characterBox{
+	position: absolute;
+	overflow: hidden;
+	background-color: #191919 ;
+	top:64%;
+	height:34%;
+	left:62%;
+	width:37%;
+	border:2px solid #00BB00;
+	z-index: 1;
 }
