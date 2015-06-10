@@ -10,6 +10,7 @@
 </head>
 
 <script src="js/utils.js" type="text/javascript"></script>
+<script src="js/character.js" type="text/javascript"></script>
 <script src="js/gameState.js" type="text/javascript"></script>
 <script src="js/scenes.js" type="text/javascript"></script>
 <script src="js/flags.js" type="text/javascript"></script>
@@ -20,6 +21,7 @@
 <script src="js/display_options.js" type="text/javascript"></script>
 <script src="js/display_inventory.js" type="text/javascript"></script>
 <script src="js/display_mainText.js" type="text/javascript"></script>
+<script src="js/display_character.js" type="text/javascript"></script>
 <script src="js/input.js" type="text/javascript"></script>
 
 
@@ -45,11 +47,12 @@
 	<div id="characterBox">
 		<table id="characterTable">
 			<tbody>
-				<tr><td id="characterName"></td></tr>
-				<tr><td id="characterJob"></td></tr>
-				<tr><td id="characterStat1"></td></tr>
-				<tr><td id="characterStat2"></td></tr>
-				<tr><td id="characterStat3"></td></tr>
+				<tr><td id="characterName"><td id="characterNameValue"></td></tr>
+				<tr><td id="characterJob"><td id="characterJobValue"></td></tr>
+				<tr><td id="characterAge"><td id="characterAgeValue"></td></tr>
+				<tr><td id="characterStat1"><td id="characterStat1Value"></td></tr>
+				<tr><td id="characterStat2"><td id="characterStat2Value"></td></tr>
+				<tr><td id="characterStat3"><td id="characterStat3Value"></td></tr>
 			</tbody>
 		</table>
 	</div>
@@ -67,6 +70,19 @@
 		inventory.add("1");
 		inventory.add("2");
 		inventory.add("3");
+	
+		gameState.currentCharacter.name = "Kojot";
+		gameState.currentCharacter.surname = "Kojotkiewicz";
+		gameState.currentCharacter.age = 21;
+		gameState.currentCharacter.job = "Programista";
+		gameState.currentCharacter.stat1current = 17;
+		gameState.currentCharacter.stat1max = 17;
+		gameState.currentCharacter.stat2current = 19;
+		gameState.currentCharacter.stat2max = 19;
+		gameState.currentCharacter.stat3current = 21;
+		gameState.currentCharacter.stat3max = 21;
+		
+		display.displayCharacterInfo();
 	
 	</script>
 	
