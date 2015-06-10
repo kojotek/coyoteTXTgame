@@ -42,7 +42,7 @@ display.countVisibleInventory = function()
 	{
 		var row = table.rows[0];
 		var rowDisplay = row.style.display;
-		row.style.display = "block";
+		row.style.display = "";
 		var rowHeight = row.offsetHeight;
 		row.style.display = rowDisplay;
 
@@ -68,7 +68,7 @@ display.refreshInventory = function()
 
 	for ( var i = 0; i < gameState.inventoryArray.length; i++ ){
 		if (i >= display.inventoryListPosition && i < (display.inventoryListPosition + display.countVisibleInventory()) ){
-			table.rows[i].style.display = "block";
+			table.rows[i].style.display = "";
 		}
 		else{
 			table.rows[i].style.display = "none";

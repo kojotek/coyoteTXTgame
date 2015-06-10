@@ -42,7 +42,7 @@ display.countVisibleOptions = function()
 	{
 		var row = table.rows[0];
 		var rowDisplay = row.style.display;
-		row.style.display = "block";
+		row.style.display = "";
 		var rowHeight = row.offsetHeight;
 		row.style.display = rowDisplay;
 
@@ -68,7 +68,7 @@ display.refreshOptions = function()
 
 	for ( var i = 0; i < options.array.length; i++ ){
 		if (i >= display.optionListPosition && i < (display.optionListPosition + display.countVisibleOptions()) ){
-			table.rows[i].style.display = "block";
+			table.rows[i].style.display = "";
 		}
 		else{
 			table.rows[i].style.display = "none";

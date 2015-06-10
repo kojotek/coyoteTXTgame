@@ -7,4 +7,5 @@ display.resize = function()
 {
 	display.refreshOptions();
 	display.refreshInventory();
+	display.refreshCharacterItems();
 }

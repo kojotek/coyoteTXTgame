@@ -52,9 +52,11 @@ document.addEventListener('keyup', function(event) {
 }, true);
 
 
+
 input = new Object();
 
 input.activeWindow = "options";
+
 
 input.nextWindow = function()
 {
@@ -65,6 +67,12 @@ input.nextWindow = function()
 			display.selectOption(-1);
 			display.selectInventory(inventory.current);
 			return;
+			
+		case "inventory":
+			input.activeWindow = "character";
+			display.selectInventory(-1);
+			display.selectCharacterItem(characterItems.current);
+			return;
 	}
 }
 
@@ -73,6 +81,12 @@ input.prevWindow = function()
 {
 	switch (input.activeWindow)
 	{
+		case "character":
+			input.activeWindow = "inventory";
+			display.selectCharacterItem(-1);
+			display.selectInventory(inventory.current);
+			return;
+		
 		case "inventory":
 			input.activeWindow = "options";
 			display.selectInventory(-1);
@@ -93,6 +107,10 @@ input.nextItem = function()
 		case "inventory":
 			inventory.next();
 			return;
+			
+		case "character":
+			characterItems.next();
+			return;
 	}
 }
 
@@ -108,6 +126,10 @@ input.prevItem = function()
 		case "inventory":
 			inventory.prev();
 			return;
+			
+		case "character":
+			characterItems.prev();
+			return;
 	}
 }
 
@@ -122,6 +144,10 @@ input.chooseItem = function()
 			
 		case "inventory":
 			inventory.useCurrent();
+			return;
+			
+		case "character":
+			characterItems.useCurrent();
 			return;
 	}
 }

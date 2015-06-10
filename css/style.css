@@ -45,7 +45,7 @@ body{
 
 #optionBox{
 	position: absolute;
-	overflow: hidden;z
+	overflow: hidden;
 	background-color: #191919 ;
 	top:64%;
 	height:34%;
@@ -137,11 +137,32 @@ body{
 #characterBox{
 	position: absolute;
 	overflow: hidden;
-	background-color: #191919 ;
 	top:64%;
 	height:34%;
 	left:62%;
 	width:37%;
 	border:2px solid #00BB00;
 	z-index: 1;
+}
+
+#characterTable{
+	position: absolute;
+	top:2%;
+	left:1%;
+	width: 98%;
+	z-index: 1;
+	border-spacing: 0px 1px;
+}
+
+#characterTable tr{
+}
+
+#characterTable tr td:nth-child(even){
+	position: absolute;
+	left: 50%;
+}
+
+#selectedCharacterItem{
+	background-color: #00BB00;
+	color: #191919;
 }
