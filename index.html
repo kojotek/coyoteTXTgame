@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
+<script src="js/tinycolor.js" type="text/javascript"></script>
 <script src="js/utils.js" type="text/javascript"></script>
 <script src="js/character.js" type="text/javascript"></script>
 <script src="js/gameState.js" type="text/javascript"></script>
@@ -60,14 +61,11 @@
 	
 	<script>
 		
-		options.add("1", "1111111111111111111 1111111111111111111111 1111111111111111111111 1111111111111111111111");
-		options.add("2", 2);
-		options.add("3", 3);
-		options.add("4", 4);
-		options.add("5", 5);
-		options.add("6", 6);
-		options.add("7", 7);
-		options.add("8", 8);
+		var opcja = options.add("addOpt", "Dodaj opcję");
+		opcja.onUse = function(){
+		var str = Math.random().toString();
+			options.add( str, str );
+		}
 		
 		items.add("1", "111");
 		items.add("2", "2");

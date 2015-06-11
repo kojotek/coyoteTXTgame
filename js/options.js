@@ -34,7 +34,7 @@ options.add = function( tag, text )
 	if (options.current < 0 || options.array.length === 1){
 		options.setCurrent(0);
 	}
-	return true;
+	return options.list[tag];
 }
 
 

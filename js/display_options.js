@@ -1,4 +1,11 @@
 display.optionListPosition = 0;
+display.optionListAnimationActive = false;
+display.optionListAnimationProgress = 0;
+display.optionListAnimationFrames = 60;
+display.optionListAnimationHandler;
+
+display.blink = false;
+display.shake = false;
 
 display.addOption = function( text )
 {
@@ -7,6 +14,39 @@ display.addOption = function( text )
 	var cell = row.insertCell(0);
 	cell.innerHTML = text;
 	display.refreshOptions();
+	if ( display.optionListAnimationActive === false )
+	{
+		display.optionListAnimationActive = true;
+		display.optionListAnimationHandler = setInterval( display.addOptionAnimation, 1);
+	}
+}
+
+
+display.addOptionAnimation = function()
+{
+	var opBox = document.getElementById("optionBox");
+	
+	var color = new tinycolor();
+	var borderWidth = 2 + ((60-display.optionListAnimationProgress)/20);
+	color._r = 255 - (display.optionListAnimationProgress * (255 / display.optionListAnimationFrames));
+	color._g = 255 - (display.optionListAnimationProgress * ((255-170) / display.optionListAnimationFrames));
+	color._b = 255 - (display.optionListAnimationProgress * (255 / display.optionListAnimationFrames));
+	
+	if (display.blink){opBox.style.borderColor = "#" + color.toHex();} 
+	if (display.shake){opBox.style.borderWidth = borderWidth + "px";}
+	
+	if( display.optionListAnimationProgress === display.optionListAnimationFrames )
+	{
+		clearInterval(display.optionListAnimationHandler);
+		display.optionListAnimationProgress = 0;
+		display.optionListAnimationActive = false;
+		opBox.style.borderColor = "#00AA00";
+		opBox.style.borderWidth = "2px";
+	}
+	else
+	{
+		display.optionListAnimationProgress++;
+	}
 }
 
 

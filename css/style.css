@@ -13,7 +13,7 @@ body{
 	font-size: 16px;
 	font-weight: bold;
 	background-color: #191919;
-	color: #00BB00;
+	color: #00AA00;
 }
 
 /*###################################################################################################################################*/
@@ -28,7 +28,7 @@ body{
 	height:60%;
 	left:1%;
 	width:60%;
-	border:2px solid #00BB00;
+	border:2px solid #00AA00;
 	z-index: 1;
 }
 
@@ -51,7 +51,7 @@ body{
 	height:34%;
 	left:1%;
 	width:60%;
-	border:2px solid #00BB00;
+	border:2px solid #00AA00;
 	z-index: 2;
 }
 
@@ -86,7 +86,7 @@ body{
 }
 
 #selectedOption{
-	background-color: #00BB00;
+	background-color: #00AA00;
 	color: #191919;
 }
 
@@ -102,7 +102,7 @@ body{
 	height:60%;
 	left:62%;
 	width:37%;
-	border:2px solid #00BB00;
+	border:2px solid #00AA00;
 	z-index: 1;
 }
 
@@ -126,7 +126,7 @@ body{
 }
 
 #selectedInventory{
-	background-color: #00BB00;
+	background-color: #00AA00;
 	color: #191919;
 }
 
@@ -141,7 +141,7 @@ body{
 	height:34%;
 	left:62%;
 	width:37%;
-	border:2px solid #00BB00;
+	border:2px solid #00AA00;
 	z-index: 1;
 }
 
@@ -163,6 +163,6 @@ body{
 }
 
 #selectedCharacterItem{
-	background-color: #00BB00;
+	background-color: #00AA00;
 	color: #191919;
 }
