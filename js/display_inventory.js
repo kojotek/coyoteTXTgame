@@ -1,4 +1,9 @@
 display.inventoryListPosition = 0;
+display.inventoryListAnimationActive = false;
+display.inventoryListAnimationProgress = 0;
+display.inventoryListAnimationFrames = 200;
+display.inventoryListAnimationHandler;
+
 
 display.addInventory = function( text )
 {
@@ -7,6 +12,39 @@ display.addInventory = function( text )
 	var cell = row.insertCell(0);
 	cell.innerHTML = text;
 	display.refreshInventory();
+	
+	if ( display.inventoryListAnimationActive === false )
+	{
+		display.inventoryListAnimationActive = true;
+		display.inventoryListAnimationHandler = setInterval( display.addInventoryAnimation, 1);
+	}
+	
+	display.inventoryListAnimationProgress = 0;
+}
+
+
+display.addInventoryAnimation = function()
+{
+	var invBox = document.getElementById("inventoryBox");
+	
+	var color = new tinycolor();
+	color._r = 255 - (display.inventoryListAnimationProgress * (255 / display.inventoryListAnimationFrames));
+	color._g = 255 - (display.inventoryListAnimationProgress * ((255-170) / display.inventoryListAnimationFrames));
+	color._b = 255 - (display.inventoryListAnimationProgress * (255 / display.inventoryListAnimationFrames));
+	
+	invBox.style.borderColor = "#" + color.toHex();
+	
+	if( display.inventoryListAnimationProgress === display.inventoryListAnimationFrames )
+	{
+		clearInterval(display.inventoryListAnimationHandler);
+		display.inventoryListAnimationProgress = 0;
+		display.inventoryListAnimationActive = false;
+		invBox.style.borderColor = "#00AA00";
+	}
+	else
+	{
+		display.inventoryListAnimationProgress++;
+	}
 }
 
 

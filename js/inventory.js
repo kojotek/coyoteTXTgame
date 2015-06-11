@@ -39,7 +39,7 @@ inventory.remove = function( tag )
 			newIndex--;
 		}
 		
-		if ( inventory.array.length === 0 ){
+		if ( gameState.inventoryArray.length === 0 ){
 			newIndex = -1;
 		}
 		

@@ -160,6 +160,7 @@ body{
 #characterTable tr td:nth-child(even){
 	position: absolute;
 	left: 50%;
+	white-space: nowrap;
 }
 
 #selectedCharacterItem{
