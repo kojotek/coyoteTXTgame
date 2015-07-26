@@ -24,3 +24,21 @@ scenes.add = function( name )
 	scenes.array.push( newScene );
 	return scenes.list[name];
 }
+
+scenes.goToScene = function( name )
+{
+	name = name.toLowerCase();
+	if ( scenes.list[name] === undefined ){
+		console.log("Scene " + name + " doesn't exist!");
+		return undefined;
+	}
+	
+	if (gameState.currentScene){
+		scenes.list[currentScene].onLeave();
+	}
+	
+	gameState.currentScene = name;
+	gameLoader.saveGameState();
+	scenes.list[name].onLoad();
+	return scenes.list[name];
+}
