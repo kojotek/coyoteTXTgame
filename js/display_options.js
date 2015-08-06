@@ -32,7 +32,7 @@ display.addOptionAnimation = function()
 	color._g = 255 - (display.optionListAnimationProgress * ((255-170) / display.optionListAnimationFrames));
 	color._b = 255 - (display.optionListAnimationProgress * (255 / display.optionListAnimationFrames));
 	
-	opBox.style.borderColor = "#" + color.toHex();
+	opBox.style.borderColor = color.toHexString();
 	
 	if( display.optionListAnimationProgress === display.optionListAnimationFrames )
 	{

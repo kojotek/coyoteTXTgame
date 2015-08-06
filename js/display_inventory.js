@@ -32,7 +32,7 @@ display.addInventoryAnimation = function()
 	color._g = 255 - (display.inventoryListAnimationProgress * ((255-170) / display.inventoryListAnimationFrames));
 	color._b = 255 - (display.inventoryListAnimationProgress * (255 / display.inventoryListAnimationFrames));
 	
-	invBox.style.borderColor = "#" + color.toHex();
+	invBox.style.borderColor = color.toHexString();
 	
 	if( display.inventoryListAnimationProgress === display.inventoryListAnimationFrames )
 	{

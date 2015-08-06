@@ -9,25 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<script src="js/tinycolor.js" type="text/javascript"></script>
-<script src="js/utils.js" type="text/javascript"></script>
-<script src="js/character.js" type="text/javascript"></script>
-<script src="js/gameState.js" type="text/javascript"></script>
-<script src="js/scenes.js" type="text/javascript"></script>
-<script src="js/flags.js" type="text/javascript"></script>
-<script src="js/options.js" type="text/javascript"></script>
-<script src="js/items.js" type="text/javascript"></script>
-<script src="js/inventory.js" type="text/javascript"></script>
-<script src="js/display.js" type="text/javascript"></script>
-<script src="js/display_options.js" type="text/javascript"></script>
-<script src="js/display_inventory.js" type="text/javascript"></script>
-<script src="js/display_mainText.js" type="text/javascript"></script>
-<script src="js/display_character.js" type="text/javascript"></script>
-<script src="js/input.js" type="text/javascript"></script>
-<script src="js/scenes/peron.js" type="text/javascript"></script>
-
 
  <body onresize="display.resize()"> 
+	
+	<div id="foregroundBox"><p id="foregroundText">sdf sdfs adfsd afasd fds<br/>sadfasdfasdfas</p></div>
+	
 	
 	<div id="mainTextBox">
 		<div id="mainTextField"></div>
@@ -58,13 +44,39 @@
 			</tbody>
 		</table>
 	</div>
-
+	
+	
+	<script src="js/tinycolor.js" type="text/javascript"></script>
+	<script src="js/utils.js" type="text/javascript"></script>
+	<script src="js/character.js" type="text/javascript"></script>
+	<script src="js/gameState.js" type="text/javascript"></script>
+	<script src="js/scenes.js" type="text/javascript"></script>
+	<script src="js/flags.js" type="text/javascript"></script>
+	<script src="js/options.js" type="text/javascript"></script>
+	<script src="js/items.js" type="text/javascript"></script>
+	<script src="js/inventory.js" type="text/javascript"></script>
+	<script src="js/display.js" type="text/javascript"></script>
+	<script src="js/display_options.js" type="text/javascript"></script>
+	<script src="js/display_inventory.js" type="text/javascript"></script>
+	<script src="js/display_mainText.js" type="text/javascript"></script>
+	<script src="js/display_character.js" type="text/javascript"></script>
+	<script src="js/display_foreground.js" type="text/javascript"></script>
+	<script src="js/input.js" type="text/javascript"></script>
+	<script src="js/scenes/menu.js" type="text/javascript"></script>
+	
 	
 	<script>
-		
+
+	
+	
+		display.writeForeground("The Game", 100, 100, darkening, "#FFFFFF", "100px");
+		display.writeForeground("has already started", 100, 100,undefined, "#5533FF", "100px");
+		display.writeForeground("Who's gonna win?", 100, 100,undefined, "#11FF33","100px");
+		display.writeForeground("Who's gonna DIE?", 100, 100,undefined, "#FF1111","100px");
+		display.writeForeground("T.R.A.I.N.", 500, 600, lightening, "#FFFFFF","180px");
 		var opcja = options.add("addOpt", "Dodaj opcję");
 		opcja.onUse = function(){
-		var str = Math.random().toString();
+			var str = Math.random().toString();
 			options.add( str, str );
 		}
 		
@@ -88,7 +100,7 @@
 		gameState.currentCharacter.stat3max = 21;
 		
 		display.displayCharacterInfo();
-	
+
 	</script>
 	
 </body>
