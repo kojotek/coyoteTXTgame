@@ -12,7 +12,7 @@
 
  <body onresize="display.resize()"> 
 	
-	<div id="foregroundBox"><p id="foregroundText">sdf sdfs adfsd afasd fds<br/>sadfasdfasdfas</p></div>
+	<div id="foregroundBox"><p id="foregroundText">ERROR</p></div>
 	
 	
 	<div id="mainTextBox">
@@ -66,14 +66,31 @@
 	
 	
 	<script>
+	
+	options.clear();
+	display.clear();
+	
+	var firstDateCheck = new Date();
+	var secondDateCheck = 0;
+	display.frameLength = 0.2;
+	display.writeForeground("LOADING", 10, 30, 
+							(darkening|lightening), 
+							"#FFFFFF", "100px", 
+							function()	{ 
+											secondDateCheck = new Date(); 
+											console.log( "loading time: " + (secondDateCheck.getTime() - firstDateCheck.getTime()) ); 
+											display.frameLength = 0.2 * (1000/(secondDateCheck.getTime() - firstDateCheck.getTime()))
+											scenes.goToScene("menu");
+										});
 
-	
-	
-		display.writeForeground("The Game", 100, 100, darkening, "#FFFFFF", "100px");
-		display.writeForeground("has already started", 100, 100,undefined, "#5533FF", "100px");
-		display.writeForeground("Who's gonna win?", 100, 100,undefined, "#11FF33","100px");
-		display.writeForeground("Who's gonna DIE?", 100, 100,undefined, "#FF1111","100px");
-		display.writeForeground("T.R.A.I.N.", 500, 600, lightening, "#FFFFFF","180px");
+/*
+		display.writeForeground("The Game", 30, 50, darkening, "#FFFFFF", "100px");
+		display.writeForeground("has already started", 30, 50,undefined, "#5533FF", "100px");
+		display.writeForeground("Who's gonna win?", 30, 50,undefined, "#11FF33","100px");
+		display.writeForeground("Who's gonna DIE?", 30, 50,undefined, "#FF1111","100px");
+		display.writeForeground("T.R.A.I.N.", 200, 150, lightening, "#FFFFFF","180px");
+
+		
 		var opcja = options.add("addOpt", "Dodaj opcję");
 		opcja.onUse = function(){
 			var str = Math.random().toString();
@@ -87,7 +104,7 @@
 		inventory.add("1");
 		inventory.add("2");
 		inventory.add("3");
-	
+*/		
 		gameState.currentCharacter.name = "Kojot";
 		gameState.currentCharacter.surname = "Kojotkiewicz";
 		gameState.currentCharacter.age = 21;

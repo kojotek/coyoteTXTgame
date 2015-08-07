@@ -98,3 +98,12 @@ options.prev = function()
 	var newIndex = Math.max ( 0, Math.min( options.current-1, options.array.length-1 ) );
 	options.setCurrent(newIndex);
 }
+
+
+options.clear = function()
+{
+	while (typeof(options.array[0]) !== 'undefined')
+	{
+		options.remove(options.array[0].tag);
+	}
+}

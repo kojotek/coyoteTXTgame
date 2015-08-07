@@ -24,7 +24,7 @@ display.setWritingInterval = function( i )
 			display._interval = i;
 		}
 		else{
-			display._contentToDisplay += "[#display._resetInterval(" + i + ");#]"
+			display._contentToDisplay += "[#display._resetInterval(" + i * display.frameLength + ");#]"
 			display._writeByChar();
 		}
 	}
@@ -38,7 +38,7 @@ display.write = function(str)
 {
 	display._contentToDisplay += str;
 	if( display._writingFinished ) {
-		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
 		display._writingFinished = false;
 	}
 }
@@ -48,7 +48,7 @@ display.writeln = function(str)
 {
 	display._contentToDisplay += ("<br/>" + str);
 	if( display._writingFinished ) {
-		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
 		display._writingFinished = false;
 	}
 }
@@ -86,7 +86,7 @@ display._writeByChar = function()
 display._hold = function( delay )
 {
 	clearInterval(display._intervalFuncHandler);
-	setTimeout( function() { display._intervalFuncHandler = setInterval (display._writeByChar, display._interval); }, delay );
+	setTimeout( function() { display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength); }, delay * display.frameLength );
 }
 
 
@@ -94,5 +94,5 @@ display._resetInterval = function( newInterval )
 {
 	display._interval = newInterval;
 	clearInterval(display._intervalFuncHandler);
-	display._intervalFuncHandler = setInterval (display._writeByChar, display._interval);
+	display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
 }

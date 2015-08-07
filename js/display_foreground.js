@@ -10,8 +10,17 @@ display.foregroundAnimationColor;
 display.foregroundAnimationHandler;
 display.foregroundColorChange = darkening | lightening;
 
-display.writeForeground = function( text, riseFrames, restFrames, backgroundColorChange=0, color="#FFFFFF", fontSize="6vw" )
+display.writeForeground = function( text, riseFrames, restFrames, backgroundColorChange, color, fontSize, callback )
 {
+	//domyslne parametry
+	if (typeof(riseFrames)==='undefined') riseFrames = 150;
+	if (typeof(restFrames)==='undefined') restFrames = 150;
+	if (typeof(backgroundColorChange)==='undefined') backgroundColorChange = 0;
+	if (typeof(color)==='undefined') color = "#FFFFFF";
+	if (typeof(fontSize)==='undefined') fontSize = "6vw";
+	
+
+	
 	if ( display.foregroundAnimationActive === false )
 	{
 		display.foregroundRiseAnimationFrames = riseFrames;
@@ -22,16 +31,16 @@ display.writeForeground = function( text, riseFrames, restFrames, backgroundColo
 		document.getElementById("foregroundText").innerHTML = text;
 		display.foregroundAnimationActive = true;
 		display.foregroundAnimationProgress = 0;
-		display.foregroundAnimationHandler = setInterval( display.writeForegroundAnimation, 1);
+		display.foregroundAnimationHandler = setInterval( function() {display.writeForegroundAnimation(callback);}, 100 * display.frameLength);
 	}
 	else
 	{
-		setTimeout( function() { display.writeForeground(text, riseFrames, restFrames, backgroundColorChange, color, fontSize); }, 100 );
+		setTimeout( function() { display.writeForeground(text, riseFrames, restFrames, backgroundColorChange, color, fontSize, callback); }, 100 );
 	}
 }
 
 
-display.writeForegroundAnimation = function()
+display.writeForegroundAnimation = function(callback)
 {
 	var fgText = document.getElementById("foregroundText");
 	var fgBox = document.getElementById("foregroundBox");
@@ -77,20 +86,20 @@ display.writeForegroundAnimation = function()
 	
 	if( display.foregroundAnimationProgress > display.foregroundRiseAnimationFrames * 2 + display.foregroundRestAnimationFrames )
 	{
-		if( display.foregroundColorChange & lightening )
-		{
-			fgBox.style.backgroundColor = "rgba(0,0,0,0)";
-		}
 		if( display.foregroundColorChange & darkening )
 		{
 			fgBox.style.backgroundColor = "rgba(0,0,0," + display.foregroundDarkAttribute + ")";
 		}
-		
+		if( display.foregroundColorChange & lightening )
+		{
+			fgBox.style.backgroundColor = "rgba(0,0,0,0)";
+		}
 
 		fgText.style.color = "rgba(0,0,0,0)";
 		clearInterval(display.foregroundAnimationHandler);
 		display.foregroundAnimationProgress = 0;
 		display.foregroundAnimationActive = false;
+		if (typeof(callback) !== 'undefined') callback();
 	}
 	else
 	{

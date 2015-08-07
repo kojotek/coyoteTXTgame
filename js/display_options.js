@@ -16,7 +16,7 @@ display.addOption = function( text )
 	if ( display.optionListAnimationActive === false )
 	{
 		display.optionListAnimationActive = true;
-		display.optionListAnimationHandler = setInterval( display.addOptionAnimation, 1);
+		display.optionListAnimationHandler = setInterval( display.addOptionAnimation, 100 * display.frameLength);
 	}
 	
 	display.optionListAnimationProgress = 0;
@@ -34,7 +34,7 @@ display.addOptionAnimation = function()
 	
 	opBox.style.borderColor = color.toHexString();
 	
-	if( display.optionListAnimationProgress === display.optionListAnimationFrames )
+	if( display.optionListAnimationProgress >= display.optionListAnimationFrames )
 	{
 		clearInterval(display.optionListAnimationHandler);
 		display.optionListAnimationProgress = 0;
@@ -43,7 +43,7 @@ display.addOptionAnimation = function()
 	}
 	else
 	{
-		display.optionListAnimationProgress++;
+		display.optionListAnimationProgress += 1 / display.frameLength;
 	}
 }
 

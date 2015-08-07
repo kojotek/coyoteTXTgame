@@ -16,7 +16,7 @@ display.addInventory = function( text )
 	if ( display.inventoryListAnimationActive === false )
 	{
 		display.inventoryListAnimationActive = true;
-		display.inventoryListAnimationHandler = setInterval( display.addInventoryAnimation, 1);
+		display.inventoryListAnimationHandler = setInterval( display.addInventoryAnimation, 100  * display.frameLength);
 	}
 	
 	display.inventoryListAnimationProgress = 0;

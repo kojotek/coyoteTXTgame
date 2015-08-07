@@ -34,7 +34,7 @@ scenes.goToScene = function( name )
 	}
 	
 	if (gameState.currentScene){
-		scenes.list[currentScene].onLeave();
+		scenes.list[gameState.currentScene].onLeave();
 	}
 	
 	gameState.currentScene = name;
