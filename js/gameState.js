@@ -30,3 +30,8 @@ gameLoader.gameSaveExists = function()
 		return false;
 	}
 }
+
+gameLoader.clearSavedGame = function()
+{
+	document.cookie = "";
+}

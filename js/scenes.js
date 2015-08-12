@@ -25,8 +25,9 @@ scenes.add = function( name )
 	return scenes.list[name];
 }
 
-scenes.goToScene = function( name )
+scenes.goToScene = function( name, saveFile )
 {
+	if (typeof(saveFile) === 'undefined')	saveFile = true;
 	name = name.toLowerCase();
 	if ( scenes.list[name] === undefined ){
 		console.log("Scene " + name + " doesn't exist!");
@@ -38,7 +39,11 @@ scenes.goToScene = function( name )
 	}
 	
 	gameState.currentScene = name;
-	gameLoader.saveGameState();
+	
+	if (saveFile === true){
+		gameLoader.saveGameState();
+	}
+	
 	scenes.list[name].onLoad();
 	return scenes.list[name];
 }

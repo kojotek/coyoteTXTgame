@@ -1,8 +1,9 @@
 ﻿display.characterItemListPosition = 0;
-
+display._characterVisible = false;
 
 display.displayCharacterInfo = function()
 {
+	display._characterVisible = true;
 	document.getElementById("characterNameLabel").innerHTML = "Personalia: ";
 	document.getElementById("characterNameValue").innerHTML = gameState.currentCharacter.name + " " + gameState.currentCharacter.surname;
 	document.getElementById("characterJobLabel").innerHTML = "Zawód: ";
@@ -15,6 +16,28 @@ display.displayCharacterInfo = function()
 	document.getElementById("characterStat2Value").innerHTML = gameState.currentCharacter.stat2current + "/" + gameState.currentCharacter.stat2max;
 	document.getElementById("characterStat3Label").innerHTML = "Stat3: ";
 	document.getElementById("characterStat3Value").innerHTML = gameState.currentCharacter.stat3current + "/" + gameState.currentCharacter.stat3max;
+}
+
+
+display.hideCharacterInfo = function()
+{
+	display._characterVisible = false;
+	document.getElementById("characterNameLabel").innerHTML =  "";
+	document.getElementById("characterNameValue").innerHTML =  "";
+	document.getElementById("characterJobLabel").innerHTML =   "";
+	document.getElementById("characterJobValue").innerHTML =   "";
+	document.getElementById("characterAgeLabel").innerHTML =   "";
+	document.getElementById("characterAgeValue").innerHTML =   "";
+	document.getElementById("characterStat1Label").innerHTML = "";
+	document.getElementById("characterStat1Value").innerHTML = "";
+	document.getElementById("characterStat2Label").innerHTML = "";
+	document.getElementById("characterStat2Value").innerHTML = "";
+	document.getElementById("characterStat3Label").innerHTML = "";
+	document.getElementById("characterStat3Value").innerHTML = "";
+	if(input.activeWindow === "character")
+	{
+		input.prevWindow();
+	}
 }
 
 
@@ -76,4 +99,10 @@ display.refreshCharacterItems = function()
 			table.rows[i].style.display = "none";
 		}
 	}
+}
+
+
+display.characterVisible = function()
+{
+	return display._characterVisible;
 }

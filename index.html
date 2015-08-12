@@ -21,6 +21,8 @@
 	
 	
 	<div id="optionBox">
+		<p id="optionUpperArrow">&#8593;</p>
+		<p id="optionLowerArrow">&#8595;</p>
 		<table id="optionTable">
 		</table>
 	</div>
@@ -80,7 +82,7 @@
 											secondDateCheck = new Date(); 
 											console.log( "loading time: " + (secondDateCheck.getTime() - firstDateCheck.getTime()) ); 
 											display.frameLength = 0.2 * (1000/(secondDateCheck.getTime() - firstDateCheck.getTime()))
-											scenes.goToScene("menu");
+											scenes.goToScene("menu", false);
 										});
 
 /*
@@ -96,7 +98,7 @@
 			var str = Math.random().toString();
 			options.add( str, str );
 		}
-		
+	
 		items.add("1", "111");
 		items.add("2", "2");
 		items.add("3", "3");
@@ -104,7 +106,7 @@
 		inventory.add("1");
 		inventory.add("2");
 		inventory.add("3");
-*/		
+
 		gameState.currentCharacter.name = "Kojot";
 		gameState.currentCharacter.surname = "Kojotkiewicz";
 		gameState.currentCharacter.age = 21;
@@ -117,7 +119,7 @@
 		gameState.currentCharacter.stat3max = 21;
 		
 		display.displayCharacterInfo();
-
+*/
 	</script>
 	
 </body>

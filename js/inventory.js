@@ -88,3 +88,18 @@ inventory.prev = function()
 	var newIndex = Math.max ( 0, Math.min( inventory.current-1, gameState.inventoryArray.length-1 ) );
 	inventory.setCurrent(newIndex);
 }
+
+
+inventory.clear = function()
+{
+	while (typeof(gameState.inventoryArray[0]) !== 'undefined')
+	{
+		inventory.remove(gameState.inventoryArray[0]);
+	}
+}
+
+
+inventory.empty = function()
+{
+	return (gameState.inventoryArray.length === 0);
+}

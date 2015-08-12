@@ -63,15 +63,32 @@ input.nextWindow = function()
 	switch (input.activeWindow)
 	{
 		case "options":
-			input.activeWindow = "inventory";
-			display.selectOption(-1);
-			display.selectInventory(inventory.current);
+			if (!inventory.empty())
+			{
+				input.activeWindow = "inventory";
+				display.selectOption(-1);
+				display.selectInventory(inventory.current);
+			}
+			else
+			{
+				if(display.characterVisible())
+				{
+					input.activeWindow = "character";
+					display.selectOption(-1);
+					display.selectCharacterItem(characterItems.current);
+				}
+				
+			}
+			
 			return;
 			
 		case "inventory":
-			input.activeWindow = "character";
-			display.selectInventory(-1);
-			display.selectCharacterItem(characterItems.current);
+			if(display.characterVisible())
+			{
+				input.activeWindow = "character";
+				display.selectInventory(-1);
+				display.selectCharacterItem(characterItems.current);
+			}
 			return;
 	}
 }
@@ -82,15 +99,31 @@ input.prevWindow = function()
 	switch (input.activeWindow)
 	{
 		case "character":
-			input.activeWindow = "inventory";
-			display.selectCharacterItem(-1);
-			display.selectInventory(inventory.current);
+			if(!inventory.empty())
+			{
+				input.activeWindow = "inventory";
+				display.selectCharacterItem(-1);
+				display.selectInventory(inventory.current);
+			}
+			else
+			{
+				if(!options.empty())
+				{
+					input.activeWindow = "options";
+					display.selectCharacterItem(-1);
+					display.selectOption(options.current);
+				}
+			}
+
 			return;
 		
 		case "inventory":
-			input.activeWindow = "options";
-			display.selectInventory(-1);
-			display.selectOption(options.current);
+			if(!options.empty())
+				{
+					input.activeWindow = "options";
+					display.selectInventory(-1);
+					display.selectOption(options.current);
+				}
 			return;
 	}
 }

@@ -12,7 +12,7 @@ display.addOption = function( text )
 	var cell = row.insertCell(0);
 	cell.innerHTML = text;
 	display.refreshOptions();
-	
+/*	
 	if ( display.optionListAnimationActive === false )
 	{
 		display.optionListAnimationActive = true;
@@ -20,6 +20,7 @@ display.addOption = function( text )
 	}
 	
 	display.optionListAnimationProgress = 0;
+*/
 }
 
 
@@ -94,6 +95,9 @@ display.countVisibleOptions = function()
 
 display.refreshOptions = function()
 {
+	document.getElementById("optionLowerArrow").style.display = "none";
+	document.getElementById("optionUpperArrow").style.display = "none";
+	
 	if ( options.current < display.optionListPosition && options.current >= 0 ){
 		display.optionListPosition = options.current;
 	}
@@ -102,6 +106,16 @@ display.refreshOptions = function()
 		display.optionListPosition = options.current - display.countVisibleOptions() + 1;
 	}
 
+	if ( display.optionListPosition > 0 )
+	{
+		document.getElementById("optionUpperArrow").style.display = "initial";
+	}
+
+	if ( (display.optionListPosition + display.countVisibleOptions() ) < options.array.length )
+	{
+		document.getElementById("optionLowerArrow").style.display = "initial";
+	}
+	
 	var table = document.getElementById("optionTable");
 
 	for ( var i = 0; i < options.array.length; i++ ){
@@ -113,6 +127,7 @@ display.refreshOptions = function()
 		}
 	}
 }
+
 
 
 display.setExtendedOptionBox = function( val )

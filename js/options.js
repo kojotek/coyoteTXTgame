@@ -18,7 +18,7 @@ options.array = new Array();
 options.current = -1;
 
 
-options.add = function( tag, text )
+options.add = function( tag, text, func )
 {
 	tag = tag.toLowerCase();
 	if ( options.list[tag] !== undefined ){
@@ -34,6 +34,8 @@ options.add = function( tag, text )
 	if (options.current < 0 || options.array.length === 1){
 		options.setCurrent(0);
 	}
+	
+	options.list[tag].onUse = func;
 	return options.list[tag];
 }
 
@@ -106,4 +108,10 @@ options.clear = function()
 	{
 		options.remove(options.array[0].tag);
 	}
+}
+
+
+options.empty = function()
+{
+	return (options.array.length === 0);
 }

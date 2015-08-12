@@ -64,14 +64,14 @@ body{
 	position: absolute;
 	table-layout: fixed;
 	left: 1%;
-	width:98%;
+	width:96%;
 	top: 2%;
 }
 
 #optionTable.extended{
 	position: absolute;
 	left: 0.6%;
-	width: 98.8%;
+	width: 96.8%;
 }
 
 #optionTable tr{
@@ -88,6 +88,30 @@ body{
 #selectedOption{
 	background-color: #00AA00;
 	color: #191919;
+}
+
+#optionUpperArrow{
+	position: absolute;
+	right: 0%;
+	text-align: center;
+	width: 3%;
+	padding: 0px;
+	margin: 0px;
+	top: 0;
+	font-size: 30px;
+	display: none;
+}
+
+#optionLowerArrow{
+		position: absolute;
+	right: 0%;
+	text-align: center;
+	width: 3%;
+	padding: 0px;
+	margin: 0px;
+	bottom: 0px;
+	font-size: 30px;
+	display: none;
 }
 
 /*###################################################################################################################################*/
