@@ -106,7 +106,7 @@ display.refreshOptions = function()
 		display.optionListPosition = options.current - display.countVisibleOptions() + 1;
 	}
 
-	if ( display.optionListPosition > 0 )
+	if ( display.optionListPosition > 0 && options.array.length > 0 )
 	{
 		document.getElementById("optionUpperArrow").style.display = "initial";
 	}

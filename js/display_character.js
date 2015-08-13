@@ -99,6 +99,11 @@ display.refreshCharacterItems = function()
 			table.rows[i].style.display = "none";
 		}
 	}
+	
+	if (display.characterVisible())
+	{
+		display.displayCharacterInfo();
+	}
 }
 
 

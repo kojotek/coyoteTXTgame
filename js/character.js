@@ -57,3 +57,20 @@ characterItems.prev = function()
 	var newIndex = Math.max ( 0, Math.min( characterItems.current-1, characterItemsArray.length-1 ) );
 	characterItems.setCurrent(newIndex);
 }
+
+
+characterItems.roll = function()
+{
+	rolledCharacter = new Character();
+	rolledCharacter.name = "Kojot";
+	rolledCharacter.surname = "Kojotkiewicz";
+	rolledCharacter.age = 21;
+	rolledCharacter.job = "Programista";
+	rolledCharacter.stat1current = 17;
+	rolledCharacter.stat1max = 17;
+	rolledCharacter.stat2current = 19;
+	rolledCharacter.stat2max = 19;
+	rolledCharacter.stat3current = 21;
+	rolledCharacter.stat3max = 21;
+	return rolledCharacter;
+}

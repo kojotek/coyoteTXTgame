@@ -94,6 +94,7 @@ body{
 	position: absolute;
 	right: 0%;
 	text-align: center;
+	direction: rtl;
 	width: 3%;
 	padding: 0px;
 	margin: 0px;
@@ -103,9 +104,10 @@ body{
 }
 
 #optionLowerArrow{
-		position: absolute;
+	position: absolute;
 	right: 0%;
 	text-align: center;
+	direction: rtl;
 	width: 3%;
 	padding: 0px;
 	margin: 0px;

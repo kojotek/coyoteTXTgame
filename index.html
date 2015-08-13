@@ -64,9 +64,12 @@
 	<script src="js/display_character.js" type="text/javascript"></script>
 	<script src="js/display_foreground.js" type="text/javascript"></script>
 	<script src="js/input.js" type="text/javascript"></script>
+	<script src="js/scenes/loadGameScene.js" type="text/javascript"></script>
 	<script src="js/scenes/menu.js" type="text/javascript"></script>
-	
-	
+	<script src="js/scenes/peron.js" type="text/javascript"></script>
+
+
+
 	<script>
 	
 	options.clear();
@@ -82,7 +85,7 @@
 											secondDateCheck = new Date(); 
 											console.log( "loading time: " + (secondDateCheck.getTime() - firstDateCheck.getTime()) ); 
 											display.frameLength = 0.2 * (1000/(secondDateCheck.getTime() - firstDateCheck.getTime()))
-											scenes.goToScene("menu", false);
+											scenes.goToScene("menu");
 										});
 
 /*
