@@ -6,12 +6,18 @@ var peron_start = function()
 	flags.add("peron","pierwszaWizyta", true);
 	if (flags.get("peron","pierwszaWizyta"))
 	{
-		display.write("Witaj po raz pierwszy!");
 		flags.set("peron","pierwszaWizyta", false);
 		gameLoader.saveGameState();
 	}
-	
-	display.write("Nie mów tego mojej żonie, ale stoję na peronie.");
+
+	$({})
+		.queue( function(next) { display.setWritingInterval(350, next) })
+		.queue( function(next) { display.writeln("1", next) })
+		.queue( function(next) { display.wait(400, next) } )
+		.queue( function(next) { display.writeln("2", next) })
+		.queue( function(next) { display.wait(400, next) } )
+		.queue( function(next) { display.writeln("3", next) })
+		.queue( function(next) { display.wait(400, next) } );
 }
 
 

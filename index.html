@@ -47,7 +47,8 @@
 		</table>
 	</div>
 	
-	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>!window.jQuery && document.write('<script src="sciezka-do-pliku/jquery.js"><\/script>')</script>
 	<script src="js/tinycolor.js" type="text/javascript"></script>
 	<script src="js/utils.js" type="text/javascript"></script>
 	<script src="js/character.js" type="text/javascript"></script>
@@ -66,6 +67,7 @@
 	<script src="js/input.js" type="text/javascript"></script>
 	<script src="js/scenes/loadGameScene.js" type="text/javascript"></script>
 	<script src="js/scenes/menu.js" type="text/javascript"></script>
+	<script src="js/scenes/demo.js" type="text/javascript"></script>
 	<script src="js/scenes/peron.js" type="text/javascript"></script>
 
 
@@ -78,7 +80,7 @@
 	var firstDateCheck = new Date();
 	var secondDateCheck = 0;
 	display.frameLength = 0.2;
-	display.writeForeground("LOADING", 10, 30, 
+	display.writeForeground("WCZYTYWANIE", 10, 30, 
 							(darkening|lightening), 
 							"#FFFFFF", "100px", 
 							function()	{ 

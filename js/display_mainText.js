@@ -4,57 +4,49 @@ display._writingFinished = true;
 display._intervalFuncHandler;
 
 
-display.clear = function()
+display.clear = function(callback)
 {
 	display._contentToDisplay = "";
 	document.getElementById("mainTextField").innerHTML = "";
+
+	if (typeof(callback) !== 'undefined')	callback();
 }
 
 
-display.wait = function( delay )
+display.wait = function( delay, callback )
 {
-	display._contentToDisplay += "[#display._hold("+delay+")#]";
+	setTimeout( callback, delay );
 }
 
 
-display.setWritingInterval = function( i )
+display.setWritingInterval = function( i, callback )
 {
 	if (i >= 0){
-		if( display._writingFinished ) {
-			display._interval = i;
-		}
-		else{
-			display._contentToDisplay += "[#display._resetInterval(" + i * display.frameLength + ");#]"
-			display._writeByChar();
-		}
+		display._interval = i;
 	}
 	else{
 		console.log("Nieprawidlowa wartosc!");
 	}
+	
+	if (typeof(callback) !== 'undefined')	callback();
 }
 
 
-display.write = function(str)
+display.write = function(str, callback)
 {
-	display._contentToDisplay += str;
-	if( display._writingFinished ) {
-		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
-		display._writingFinished = false;
-	}
+	display._contentToDisplay = str;
+	display._intervalFuncHandler = setInterval ( function() {display._writeByChar(callback)}, display._interval * display.frameLength);
 }
 
 
-display.writeln = function(str)
+display.writeln = function(str, callback)
 {
-	display._contentToDisplay += ("<br/>" + str);
-	if( display._writingFinished ) {
-		display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
-		display._writingFinished = false;
-	}
+	display._contentToDisplay = ("<br/>" + str);
+	display._intervalFuncHandler = setInterval ( function() {display._writeByChar(callback)}, display._interval * display.frameLength);
 }
 
 
-display._writeByChar = function()
+display._writeByChar = function( callback )
 {
 	if (display._contentToDisplay.length > 0)
 	{
@@ -79,20 +71,7 @@ display._writeByChar = function()
 	{
 		display._writingFinished = true;
 		clearInterval( display._intervalFuncHandler );
+		
+		if (typeof(callback) !== 'undefined')	callback();
 	}
-}
-
-
-display._hold = function( delay )
-{
-	clearInterval(display._intervalFuncHandler);
-	setTimeout( function() { display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength); }, delay * display.frameLength );
-}
-
-
-display._resetInterval = function( newInterval )
-{
-	display._interval = newInterval;
-	clearInterval(display._intervalFuncHandler);
-	display._intervalFuncHandler = setInterval (display._writeByChar, display._interval * display.frameLength);
 }

@@ -40,7 +40,7 @@ scenes.list["menu"].onLoad = function()
 			options.add("tak", "Tak", function(){
 													gameState.currentCharacter = characterItems.roll();
 													display.displayCharacterInfo();
-													scenes.goToScene("peron");
+													scenes.goToScene("demo");
 												});
 			
 			options.add("nie", "Nie", function(){ 
@@ -51,7 +51,8 @@ scenes.list["menu"].onLoad = function()
 		{
 			gameState.currentCharacter = characterItems.roll();
 			display.displayCharacterInfo();
-			scenes.goToScene("peron");
+			//scenes.goToScene("peron");
+			scenes.goToScene("demo");
 		}
 	}
 }
